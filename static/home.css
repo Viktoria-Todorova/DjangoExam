@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Gravitas+One&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Macondo&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+html {
+    font-family: "Macondo", cursive;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: 400;
+    font-style: normal;
+}
+body {     
+    min-height: 100vh;
+    position: relative;
+    background-image: url('images/lib1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: url('images/magic-wand.png'),auto;
+}
+body > *{
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: inherit;
+    background-size: inherit;
+    background-position: inherit;
+    background-repeat: inherit;
+    filter: blur(2px);
+    transform: scale(1.05);
+    z-index: 0;
+}
+
+.section.site-header{
+    display: flex;
+    justify-content: space-between;
+}
+.section.site-header img{
+    height: 100px;
+    width: auto;
+
+}
+
+.section.site-header nav ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.section.site-header nav ul li {
+    padding: 4em;
+    list-style: none;
+}
+
+.section.site-header nav ul li a {
+    text-decoration: none;
+    color: white;
+    text-transform: uppercase;
+}
+.section.site-header nav ul li a:hover {
+    color: greenyellow;
+}
+
+.library-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5em;
+}
+
+.library-header h1 {
+    color: white;
+    font-size: 3em;
+    margin: 0;
+
+}
+.library-header h1:hover{
+    color: aqua;
+}
+.search-bar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2em;
+}
+.search-bar input{
+    width: 500px;         /* input width */
+    max-width: 80%;       /* responsive */
+    padding: 0.8em 1em;   /* space inside the box */
+    font-size: 1em;
+    border-radius: 2em;
+    border: 5px solid #37b8ee;
+    color: white;
+    background-color: rgba(144, 218, 250, 0.69);
+    box-shadow: 0 0 10px rgb(242, 230, 230);
+    text-align: center;
+}
+.search-bar input::placeholder {
+    color: #aee2ff;
+    font-style: italic;
+    text-shadow: 0 0 5px #aee2ff;
+    text-align: center;
+}
+
+.library-header button{
+    display: inline-block;
+    padding: 0.5em 1.2em;
+    border: 2px solid blue;
+    border-radius: 1em;
+    background: #37b8ee;
+    color: #7af6e2;
+    cursor: pointer;
+
+    &:hover {
+        background: #0015ff;
+    }
+}
+
