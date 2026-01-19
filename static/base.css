@@ -20,8 +20,11 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    background-attachment: fixed;
     cursor: url('images/magic-wand.png'),auto;
+    overflow: hidden;
 }
+
 body > *{
     width: 100%;
     position: relative;
@@ -39,7 +42,7 @@ body::before {
     background-position: inherit;
     background-repeat: inherit;
     filter: blur(2px);
-    transform: scale(1.05);
+    transform: scale(1);
     z-index: 0;
 }
 
@@ -83,7 +86,7 @@ body::before {
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 1.5em;
+
 }
 
 .library-header h1 {
@@ -128,7 +131,7 @@ body::before {
     background: #37b8ee;
     color: #7af6e2;
     cursor: pointer;
-
+    margin-top:2em ;
     &:hover {
         background: #0015ff;
     }

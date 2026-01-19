@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+ <main class="library-header">
+    <h1>This is my Magic Library</h1>
+     <form method="get" action="{% url 'search_books' %}">
+         <div class="search-bar">
+             <input name="title"
+                    id="question"
+                    type="text"
+                    placeholder="What magic book do you want?"
+                    required>
+             <input name="writer"
+                    id="question"
+                    type="text"
+                    placeholder="Who is the author?"
+                   >
+         </div>
+         <button class="search-btn" type="submit">Search</button>
+     </form>
+</main>
+{% endblock %}

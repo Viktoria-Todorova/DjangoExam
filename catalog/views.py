@@ -10,4 +10,20 @@ def home(request: HttpRequest)->HttpResponse:
         'books': Catalog.objects.all(),
     }
 
-    return render(request, 'home.html', context)
+    return render(request, 'catalog/home.html', context)
+
+def search_books(request):
+    title = request.GET.get('title', '')
+    writer = request.GET.get('writer', '')
+
+    books = Catalog.objects.all()
+    if title:
+        books = books.filter(title__icontains=title)
+    if writer:
+        books = books.filter(writer__icontains=writer)
+
+    context = {
+        'books': books,
+    }
+
+    return render(request, 'catalog/search_result.html',context)

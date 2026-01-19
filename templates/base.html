@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalog</title>
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <header class="section site-header">
+        <img src="{% static 'images/logo.gif' %}">
+
+        <nav>
+            <ul>
+                <li><a href="">My library</a></li>
+                <li><a href="#">Potions</a></li>
+                <li><a href="#">Match a Dragon</a></li>
+                <li><a href="#">Read</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+  <div class = 'container'>
+      {% block content %}
+      {% endblock %}
+  </div>
+
+
+
+</body>
+</html>
