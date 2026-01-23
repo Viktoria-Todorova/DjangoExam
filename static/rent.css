@@ -1,0 +1,38 @@
+.box-for-renting {
+    padding: 0.8em 2em;
+    margin: 1em auto;
+    width: 90%;
+    max-width: 300px;
+    list-style: none;
+    border: 5px solid #37b8ee;
+    border-radius: 12px;
+    color: white;
+    background-color: rgba(144, 218, 250, 0.69);
+    box-shadow: 0 0 10px rgb(242, 230, 230);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    gap: 0.8em;
+}
+.box-for-renting h2:hover{
+    color: blue;
+}
+.box-for-renting h3{
+    color: darkred;
+}
+
+
+.rules ul{
+    list-style: none;
+}
+
+.rules ul li{
+    padding: 0.8em 0;
+}
+
+.rules ul li:hover{
+    color:mediumvioletred;
+    font-weight: bold;
+}

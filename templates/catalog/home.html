@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
-
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'home.css' %}">{% endblock %}
 {% block content %}
  <main class="library-header">
     <h1>This is my Magic Library</h1>
@@ -10,13 +11,8 @@
                     type="text"
                     placeholder="What magic book do you want?"
                     required>
-             <input name="writer"
-                    id="question"
-                    type="text"
-                    placeholder="Who is the author?"
-                   >
          </div>
-         <button class="search-btn" type="submit">Search</button>
+         <button class="search-btn" type="button">Search</button>
      </form>
 </main>
 {% endblock %}

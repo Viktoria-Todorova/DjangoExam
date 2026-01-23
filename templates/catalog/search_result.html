@@ -16,11 +16,8 @@
                     <h2>{{ book.title }}</h2>
                     <p>Author: {{ book.writer }}</p>
                     {% if book.quantity > 0 %}
-                        <button type="submit">Rent</button>
-{#                        <form method="post" action="{% url 'rent_book' book.id %}">#}
-{#                            {% csrf_token %}#}
-{#                            #}
-{#                        </form>#}
+                        <a href="{% url 'rent_a_book' book.id %}"><button type="button">Rent</button></a>
+
                     {% else %}
                         <p class="unavailable">Currently not available</p>
                     {% endif %}

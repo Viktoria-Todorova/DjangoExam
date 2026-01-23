@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'register_book.css' %}">{% endblock %}
+
+
+{% block content %}
+    <main>
+        <div class = 'book-details'>
+
+        </div>
+        <form method="post" action="{% url 'confirm_rent' title=title %}">
+            {% csrf_token %}
+
+            <label for="renter_name">Your Name</label>
+            <input type="text" id="renter_name" name="renter_name" placeholder="Enter your name" required>
+
+
+        <a href="{% url 'rent_a_book' book.id %}"><button type="button">Rent</button></a>
+    </form>
+    </main>
+{% endblock %}

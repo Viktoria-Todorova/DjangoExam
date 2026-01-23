@@ -22,4 +22,5 @@ from catalog.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('catalog.urls')),
+    path('rent/',include('circulation.urls')),
 ]

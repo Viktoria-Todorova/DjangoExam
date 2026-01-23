@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'rent.css' %}">{% endblock %}
+
+
+{% block content %}
+    <main class = "box-for-renting">
+        <h1>So you want to rent my magic book:</h1>
+        <h2>{{ title }}</h2>
+        <div class="rules">
+            <h3>Here are my rules:</h3>
+            <ul>
+                <li>1. Do not use spells for evil (or for cheating on exams).</li>
+                <li>2. The book must be returned in one piece and not possessed.</li>
+                <li>3. Any dragons summoned are your responsibility.</li>
+                <li>4. No spells involving exes, explosions, or time travel.</li>
+                <li>5. Late returns will be punished by mysterious frog rain.</li>
+            </ul>
+
+        <button type="button">Rent</button>
+        </div>
+
+
+    </main>
+{% endblock %}

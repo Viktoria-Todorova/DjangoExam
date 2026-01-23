@@ -13,16 +13,17 @@ html {
     font-weight: 400;
     font-style: normal;
 }
-body {     
+body {
     min-height: 100vh;
     position: relative;
     background-image: url('images/lib1.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
-    cursor: url('images/magic-wand.png'),auto;
-    overflow: hidden;
+    background-attachment: fixed; /* optional, keeps background fixed */
+    cursor: url('images/magic-wand.png'), auto;
+    overflow-y: auto;   /* allows vertical scroll */
+    overflow-x: hidden;
 }
 
 body > *{
@@ -30,21 +31,8 @@ body > *{
     position: relative;
     z-index: 1;
 }
-body::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: inherit;
-    background-size: inherit;
-    background-position: inherit;
-    background-repeat: inherit;
-    filter: blur(2px);
-    transform: scale(1);
-    z-index: 0;
-}
+
+
 
 .section.site-header{
     display: flex;
@@ -75,55 +63,15 @@ body::before {
     color: greenyellow;
 }
 
-.library-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
+.container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
-    text-align: center;
-
-}
-
-.library-header h1 {
-    color: white;
-    font-size: 3em;
-    margin: 0;
-
-}
-.library-header h1:hover{
-    color: aqua;
-}
-.search-bar{
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    gap: 2em;
-}
-.search-bar input{
-    width: 500px;         /* input width */
-    max-width: 80%;       /* responsive */
-    padding: 0.8em 1em;   /* space inside the box */
-    font-size: 1em;
-    border-radius: 2em;
-    border: 5px solid #37b8ee;
-    color: white;
-    background-color: rgba(144, 218, 250, 0.69);
-    box-shadow: 0 0 10px rgb(242, 230, 230);
-    text-align: center;
-}
-.search-bar input::placeholder {
-    color: #aee2ff;
-    font-style: italic;
-    text-shadow: 0 0 5px #aee2ff;
-    text-align: center;
+
 }
 
-.library-header button{
+button{
     display: inline-block;
     padding: 0.5em 1.2em;
     border: 2px solid blue;
@@ -132,8 +80,6 @@ body::before {
     color: #7af6e2;
     cursor: pointer;
     margin-top:2em ;
-    &:hover {
-        background: #0015ff;
-    }
 }
 
+button:hover{background: #0015ff;}

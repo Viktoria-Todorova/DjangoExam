@@ -9,14 +9,15 @@
 </head>
 <body>
     <header class="section site-header">
-        <img src="{% static 'images/logo.gif' %}">
+        <a href="{% url 'home' %}"><img src="{% static 'images/logo.gif' %}"></a>
+{#        <img src="{% static 'images/logo.gif' %}">#}
 
         <nav>
             <ul>
-                <li><a href="">My library</a></li>
-                <li><a href="#">Potions</a></li>
-                <li><a href="#">Match a Dragon</a></li>
-                <li><a href="#">Read</a></li>
+                <li><a href="">My library</a></li> {# list of all the books #}
+                <li><a href="#">Potions</a></li> {# making magic potions #}
+                <li><a href="#">Match a Dragon</a></li> {# random matchmaking #}
+                <li><a href="#">Read</a></li> {# blog #}
             </ul>
         </nav>
     </header>
