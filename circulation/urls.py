@@ -1,7 +1,12 @@
-from django.urls import path
+from django.urls import path, include
 
-from circulation.views import rent_a_book
+from circulation import views
 
-urlpatterns=[
-    path('<int:book_id>/',rent_a_book,name='rent_a_book'),
+
+
+urlpatterns = [
+    path('<int:book_id>/', include([
+        path('', views.rent_a_book, name='rent_a_book'),
+        path('register/', views.register, name='register'),
+    ])),
 ]

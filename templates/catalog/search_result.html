@@ -12,7 +12,7 @@
 
         <ul class="book-list">
             {% for book in books %}
-                <li class="book-card">
+                <li class="box-details">
                     <h2>{{ book.title }}</h2>
                     <p>Author: {{ book.writer }}</p>
                     {% if book.quantity > 0 %}

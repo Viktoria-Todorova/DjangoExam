@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'register-page.css' %}">{% endblock %}
+
+
+{% block content %}
+<main class="register-book">
+    <div class = 'box-details book-box' >
+        <h1>{{ book.title }}</h1>
+
+        <p>Author: {{ book.writer }}</p>
+        <p>Genre: {{ book.genre }}</p>
+
+
+    </div>
+
+    <div class="box-details form-box">
+        <h1>I need your details for your soul if you don't return the book</h1>
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" id="first_name" name="first_name" placeholder="Enter your first name" required>
+
+
+            <input type="text" id="last_name" name="last_name" placeholder="Enter your last name" required>
+
+
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+
+        </form>
+        <button type="submit">Rent</button>
+        </div>
+
+
+
+</main>
+{% endblock %}
