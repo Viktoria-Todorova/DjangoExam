@@ -2,12 +2,12 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 from catalog.models import Catalog
-from users.models import Reader
+from users.models import User
 
 
 # Create your models here.
 class Borrowed(models.Model):
-    reader = models.ForeignKey(Reader, on_delete=models.CASCADE)
+    reader = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Catalog, on_delete=models.CASCADE)
     borrow_date = models.DateTimeField(auto_now_add=True)
     due_date = models.DateTimeField()
@@ -20,7 +20,7 @@ class Borrowed(models.Model):
 
 
 class Review(models.Model):
-    reader = models.ForeignKey(Reader, on_delete=models.CASCADE)
+    reader = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Catalog, on_delete=models.CASCADE)
     rating = models.IntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     comment = models.TextField(blank=True)

@@ -17,7 +17,9 @@
             <li>5. Late returns will be punished by mysterious frog rain.</li>
         </ul>
 
-        <a href="{% url 'register' book.id%}"><button type="button">I accept!</button></a>
+        <form action="{% url 'register' book.id %}" method="get">
+            <button type="submit">I accept!</button>
+        </form>
 
     </div>
 
