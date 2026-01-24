@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'table.css' %}">{% endblock %}
+{% block content %}
+    <div>
+
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Writer</th>
+                <th>genre</th>
+                <th>Available</th>
+            </tr>
+
+            {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.writer }}</td>
+                <td>{{ book.genre }}</td>
+                <td> {% if book.quantity >= 1 %}
+                    Available
+                    {% else%}
+                    Not available
+                {% endif %}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+
+
+    </div>
+{% endblock %}

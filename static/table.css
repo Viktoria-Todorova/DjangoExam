@@ -1,0 +1,25 @@
+table{
+    border-collapse: collapse;
+}
+
+th {
+    background-color: rgba(34, 38, 108, 0.38);
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+    color: white;
+}
+
+td:hover{
+     color:darkred;
+    transition: 0.3s;
+}
+tr:nth-child(even) {
+    background-color: rgba(144, 218, 250, 0.69);
+    box-shadow: 0 0 10px rgb(242, 230, 230)
+}
+
+tr:nth-child(odd) {
+    background-color: #37b8ee;
+}

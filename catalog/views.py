@@ -27,3 +27,11 @@ def search_books(request):
     }
 
     return render(request, 'catalog/search_result.html',context)
+
+def all_books(request: HttpRequest) -> HttpResponse:
+    books = Catalog.objects.all()
+    context = {
+        'books': books,
+    }
+
+    return render(request, 'catalog/all_books.html', context)
