@@ -16,7 +16,7 @@ class Borrowed(models.Model):
     def __str__(self):
         return f"{self.reader} borrowed {self.book} on {self.borrow_date.date()}"
 
-    #check if book is overdue
+    #todo check if book is overdue
 
 
 class Review(models.Model):

@@ -6,11 +6,7 @@ from catalog.models import Catalog
 
 # Create your views here.
 def home(request: HttpRequest)->HttpResponse:
-    context = {
-        'books': Catalog.objects.all(),
-    }
-
-    return render(request, 'catalog/home.html', context)
+    return render(request, 'catalog/home.html')
 
 def search_books(request):
     title = request.GET.get('title', '')
@@ -33,5 +29,4 @@ def all_books(request: HttpRequest) -> HttpResponse:
     context = {
         'books': books,
     }
-
     return render(request, 'catalog/all_books.html', context)
