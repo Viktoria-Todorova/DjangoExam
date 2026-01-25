@@ -7,9 +7,9 @@ from users.models import User
 
 class Dragon(models.Model):
     name = models.CharField(max_length=100)
-    photo = models.ImageField()
+    photo = models.CharField(max_length=200)
     description = models.TextField()
-    rider = models.OneToOneField(User,on_delete=models.CASCADE,default=None)
+    rider = models.OneToOneField(User,on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
         return self.name

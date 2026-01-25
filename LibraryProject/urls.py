@@ -24,5 +24,6 @@ urlpatterns = [
     path('',include('catalog.urls')),
     path('rent/',include('circulation.urls')),
     path('register/',include('users.urls')),
+    path('dragons/',include('dragons.urls')),
     path('test-404/', TemplateView.as_view(template_name='404.html')),
 ]

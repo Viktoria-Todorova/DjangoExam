@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'dragons-display.css' %}">{% endblock %}
+
+{% block content %}
+
+    <form action="{% url 'random-dragon' %}" method="get">
+            <button type="submit">Match me with a Dragon!!</button>
+    </form>
+<main class = 'dragons-images'>
+
+    {% for dragon in dragons %}
+        <div class="box-details">
+            <h1>{{ dragon.name }}</h1>
+            <img src="{% static 'dragons/'|add:dragon.photo %}" alt="{{ dragon.name }}">
+            <p>{{ dragon.description }}</p>
+        </div>
+    {% endfor %}
+</main>
+{% endblock %}

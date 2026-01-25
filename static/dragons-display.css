@@ -1,0 +1,9 @@
+
+.dragons-images {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.box-details img{
+    max-width: 150px;
+}

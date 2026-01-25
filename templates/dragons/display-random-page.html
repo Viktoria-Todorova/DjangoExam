@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'random.css' %}">{% endblock %}
+
+{% block content %}
+<main class = 'order-fireworks'>
+    <img src="{% static 'images/fireworks.gif' %}">
+    <div class="box-details" >
+
+        <h1>You matched with</h1>
+         <h2>{{ dragon.name }}</h2>
+        <img src="{% static 'dragons/'|add:dragon.photo %}" alt="{{ dragon.name }}">
+
+    </div>
+</main>
+
+{% endblock %}

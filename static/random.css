@@ -1,0 +1,9 @@
+.order-fireworks {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.box-details img{
+    max-width: 150px;
+}
