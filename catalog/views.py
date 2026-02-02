@@ -23,10 +23,20 @@ def search_books(request):
     }
 
     return render(request, 'catalog/search_result.html',context)
-
+#todo i want to filter them by genre
 def all_books(request: HttpRequest) -> HttpResponse:
     books = Catalog.objects.all()
     context = {
         'books': books,
     }
     return render(request, 'catalog/all_books.html', context)
+
+#todo
+def book_delete(request: HttpRequest,pk)->HttpResponse:
+    #only if admin
+    return render(request, 'catalog/books_delete.html', context)
+
+def book_edit(request: HttpRequest,pk)->HttpResponse:
+    #only if admin
+    #add validations
+    return render(request, 'catalog/books_edit.html', context)

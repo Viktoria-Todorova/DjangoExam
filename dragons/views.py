@@ -23,3 +23,13 @@ def random_dragon(request: HttpRequest) -> HttpResponse:
         'dragon': dragon_for_you,
     }
     return render(request, 'dragons/display-random-page.html', context)
+
+def raise_an_egg(request: HttpRequest) -> HttpResponse:
+    #it needs 10 books readed, 3 magic potions created to create a dragon
+    #it will return how many of each it need more for the dragon to be born
+    return render(request,'dragons/raise-an-egg.html',context)
+
+def create_dragon(request: HttpRequest) -> HttpResponse:
+    #only after raise an egg is succesful, it can have name,powers etc and for cooler to thing of a way to have a
+# random generated picture of a dragon
+    return render(request,'dragons/create-dragon.html',context)

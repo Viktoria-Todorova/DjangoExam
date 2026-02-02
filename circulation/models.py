@@ -17,8 +17,8 @@ class Borrowed(models.Model):
         return f"{self.reader} borrowed {self.book} on {self.borrow_date.date()}"
 
     #todo check if book is overdue
-
-
+#todo
+#not sure if i want reviews- or i can use them in the read section for the blog
 class Review(models.Model):
     reader = models.ForeignKey(User, on_delete=models.CASCADE)
     book = models.ForeignKey(Catalog, on_delete=models.CASCADE)

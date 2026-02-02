@@ -2,31 +2,33 @@
 {% load static %}
 {% block css %}<link rel="stylesheet" href="{% static 'table.css' %}">{% endblock %}
 {% block content %}
-    <div>
-
+    <div class="table-container">
+        <h1 class="table-title">Book Collection</h1>
         <table>
-            <tr>
-                <th>Title</th>
-                <th>Writer</th>
-                <th>genre</th>
-                <th>Available</th>
-            </tr>
-
-            {% for book in books %}
-            <tr>
-                <td>{{ book.title }}</td>
-                <td>{{ book.writer }}</td>
-                <td>{{ book.genre }}</td>
-                <td> {% if book.quantity >= 1 %}
-                    Available
-                    {% else%}
-                    Not available
-                {% endif %}</td>
-
-            </tr>
-            {% endfor %}
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Writer</th>
+                    <th>Genre</th>
+                    <th>Availability</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td class="book-title">{{ book.title }}</td>
+                    <td>{{ book.writer }}</td>
+                    <td><span class="genre-badge">{{ book.genre }}</span></td>
+                    <td>
+                        {% if book.quantity >= 1 %}
+                            <span class="status-badge available">✓ Available</span>
+                        {% else %}
+                            <span class="status-badge unavailable">✗ Not Available</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
-
-
     </div>
 {% endblock %}

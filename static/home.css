@@ -1,42 +1,87 @@
-
 .library-header {
     width: 100%;
     text-align: center;
-
+    padding: 2em 0;
 }
 
 .library-header h1 {
-    color: white;
+    color: #d4af37;
     font-size: 3em;
     margin: 0;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(212, 175, 55, 0.5),
+        0 0 40px rgba(139, 69, 19, 0.3);
+    letter-spacing: 3px;
+    animation: flicker 3s ease-in-out infinite;
+}
 
-}
 .library-header h1:hover{
-    color: aqua;
+    color: #ffd700;
+    text-shadow: 
+        2px 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 30px rgba(255, 215, 0, 0.7),
+        0 0 50px rgba(212, 175, 55, 0.5);
 }
+
+@keyframes flicker {
+    0%, 100% { 
+        opacity: 1;
+        text-shadow: 
+            2px 2px 4px rgba(0, 0, 0, 0.8),
+            0 0 20px rgba(212, 175, 55, 0.5);
+    }
+    50% { 
+        opacity: 0.95;
+        text-shadow: 
+            2px 2px 4px rgba(0, 0, 0, 0.8),
+            0 0 25px rgba(212, 175, 55, 0.7);
+    }
+}
+
 .search-bar{
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2em;
 }
+
 .search-bar input{
-    width: 500px;         /* input width */
-    max-width: 80%;       /* responsive */
-    padding: 0.8em 1em;   /* space inside the box */
+    width: 500px;
+    max-width: 80%;
+    padding: 1em 1.5em;
     font-size: 1em;
     border-radius: 2em;
-    border: 5px solid #37b8ee;
-    color: white;
-    background-color: rgba(144, 218, 250, 0.69);
-    box-shadow: 0 0 10px rgb(242, 230, 230);
+    border: 3px solid #8b6914;
+    color: #f4e4c1;
+    background: linear-gradient(135deg, 
+        rgba(26, 24, 44, 0.85), 
+        rgba(45, 35, 66, 0.85));
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 6px 25px rgba(0, 0, 0, 0.6),
+        inset 0 0 15px rgba(139, 105, 20, 0.2),
+        0 0 30px rgba(212, 175, 55, 0.2);
     text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    transition: all 0.3s ease;
 }
+
+.search-bar input:focus {
+    outline: none;
+    border-color: #d4af37;
+    box-shadow: 
+        0 8px 35px rgba(0, 0, 0, 0.7),
+        inset 0 0 20px rgba(139, 105, 20, 0.3),
+        0 0 40px rgba(212, 175, 55, 0.4);
+    background: linear-gradient(135deg, 
+        rgba(45, 35, 66, 0.9), 
+        rgba(26, 24, 44, 0.9));
+}
+
 .search-bar input::placeholder {
-    color: #aee2ff;
+    color: #9b8b7e;
     font-style: italic;
-    text-shadow: 0 0 5px #aee2ff;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     text-align: center;
 }
-
-

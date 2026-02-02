@@ -4,14 +4,19 @@
 
 {% block content %}
 <main class = 'order-fireworks'>
-    <img src="{% static 'images/fireworks.gif' %}">
+
+
     <div class="box-details" >
-
         <h1>You matched with</h1>
-         <h2>{{ dragon.name }}</h2>
+        <h2>{{ dragon.name }}</h2>
         <img src="{% static 'dragons/'|add:dragon.photo %}" alt="{{ dragon.name }}">
-
     </div>
+
+    <div class="box-details">
+        <h1>A little bit about me</h1>
+        <p>{{ dragon.description }}</p>
+    </div>
+
 </main>
 
 {% endblock %}
