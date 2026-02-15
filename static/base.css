@@ -133,7 +133,7 @@ button{
     letter-spacing: 1.5px;
     text-transform: uppercase;
     cursor: pointer;
-    margin-top: 2em;
+
     transition: all 0.3s ease;
     box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.5),

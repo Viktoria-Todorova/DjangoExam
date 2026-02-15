@@ -1,7 +1,7 @@
 from django import forms
 
 from users.models import User
-
+from intl_tel_input.widgets import IntlTelInputWidget
 
 class UserForm(forms.ModelForm):
     class Meta:
@@ -14,10 +14,8 @@ class UserForm(forms.ModelForm):
             'last_name': forms.TextInput(attrs={
                 'placeholder': 'Enter your last name'
             }),
-            'phone_number': forms.TextInput(attrs={
-                'placeholder': '08888888',
-                'type': 'tel'
-            }),
+            'phone_number': forms.TextInput(attrs={'placeholder': '888 123 456','maxlength': '10'},)
+            ,
             'email': forms.EmailInput(attrs={
                 'placeholder': 'your.email@example.com'
             }),

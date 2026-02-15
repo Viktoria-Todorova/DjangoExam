@@ -1,8 +1,8 @@
 from django.urls import path
 
-from dragons.views import display_dragons, random_dragon
+from dragons import views
 
 urlpatterns =[
-    path('',display_dragons, name='display-dragons'),
-    path('random/',random_dragon,name='random-dragon'),
+    path('',views.DisplayDragonView.as_view(), name='display-dragons'),
+    path('random/',views.RandomDragonView.as_view(),name='random-dragon'),
 ]
