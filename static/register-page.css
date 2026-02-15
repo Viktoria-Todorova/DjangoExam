@@ -21,6 +21,7 @@
 .book-box p{
     font-size: 1.5em;
 }
+
 .form-box {
     flex: 1 1 300px;
     min-width: 300px;
@@ -39,22 +40,38 @@
     word-wrap: break-word;
     margin: 0 0 1em 0;
 }
+
 .form-box form {
     display: flex;
-
     gap: 1.2em;
     flex-wrap: wrap;
     justify-content: center;
-
 }
-form input{
+
+.form-box form p {
     flex: 1 1 calc(50% - 0.6em);
     min-width: 200px;
+    margin: 0;
+}
+
+.form-box form label {
+    display: none;
+}
+
+.form-box form input {
+    width: 100%;
     padding: 0.5em;
     font-size: 1em;
     border-radius: 1em;
-    border: 2px solid blue;
+    border: 2px solid rgba(34, 38, 108, 0.38);
     text-align: center;
     box-sizing: border-box;
 }
 
+.form-box button {
+   width: 150px; /* Fixed smaller width */
+    padding: 0.5em;
+    font-size: 0.9em; /* Slightly smaller text */
+    margin: 2em auto 0 auto;
+    display: block;
+}

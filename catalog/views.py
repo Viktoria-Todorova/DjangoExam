@@ -1,28 +1,31 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render
 
+from catalog.forms import SearchForm
 from catalog.models import Catalog
 
 
 # Create your views here.
-def home(request: HttpRequest)->HttpResponse:
-    return render(request, 'catalog/home.html')
+def search_books(request: HttpRequest)->HttpResponse:
+    form = SearchForm(request.GET or None)
+    books = Catalog.objects.none()
 
-def search_books(request):
-    title = request.GET.get('title', '')
-    writer = request.GET.get('writer', '')
+    searched_book =''
 
-    books = Catalog.objects.all()
-    if title:
-        books = books.filter(title__icontains=title)
-    if writer:
-        books = books.filter(writer__icontains=writer)
+    if request.GET and form.is_valid():
+        searched_book = form.cleaned_data['book_name']
+        books = Catalog.objects.filter(title__icontains=searched_book)
 
     context = {
+        'form': form,
         'books': books,
+        'searched_book': searched_book,
     }
+    return render(request, 'catalog/home.html',context)
 
-    return render(request, 'catalog/search_result.html',context)
+
+
+
 #todo i want to filter them by genre
 def all_books(request: HttpRequest) -> HttpResponse:
     books = Catalog.objects.all()

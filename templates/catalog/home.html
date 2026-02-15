@@ -4,15 +4,31 @@
 {% block content %}
  <main class="library-header">
     <h1>This is my Magic Library</h1>
-     <form method="get" action="{% url 'search_books' %}">
-         <div class="search-bar">
-             <input name="title"
-                    id="question"
-                    type="text"
-                    placeholder="What magic book do you want?"
-                    required>
-         </div>
-         <button class="search-btn" type="button">Search</button>
+     <form method="get" class="search-bar">
+        {% csrf_token %}
+         {{ form.book_name }}
+         <button class="search-btn" type="submit">Search</button>
      </form>
+
+    {% if books %}
+        <h2 class ="results-heading">Search Results</h2>
+        <div class="results-container">
+            {% for book in books %}
+                <div class="box-details">
+                    <h3>{{ book.title }}</h3>
+                    <p>Author: {{ book.writer }}</p>
+                    {% if book.quantity > 0 %}
+                        <a href="{% url 'rent_a_book' book.id %}">
+                            <button type="button">Rent</button>
+                        </a>
+                     {% else %}
+                        <p class="unavailable">Currently not available</p>
+                    {% endif %}
+                </div>
+
+            {% endfor %}
+        </div>
+    {% endif %}
+
 </main>
 {% endblock %}
