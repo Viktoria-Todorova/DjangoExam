@@ -4,8 +4,6 @@ from django.db import models
 # Create your models here.
 
 class Catalog(models.Model):
-
-
     class Genre(models.TextChoices):
         FANTASY = "FANTASY", "Fantasy"
         NOVEL = "NOVEL", "Novel"
