@@ -1,9 +1,10 @@
 from django.db.models import QuerySet
 from django.http import HttpResponse, HttpRequest,HttpResponseBadRequest
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, UpdateView, DetailView, DeleteView
 
-from catalog.forms import SearchForm, GenreFilterForm
+from catalog.forms import SearchForm, GenreFilterForm, BooksForm, DeleteBookForm
 from catalog.models import Catalog
 
 
@@ -102,14 +103,52 @@ class CatalogListView(ListView):
         return qs
 
 
+class BookDetailView(DetailView):
+    model = Catalog
+    template_name = 'catalog/book_detail.html'
+    context_object_name = 'book'
 
+
+
+
+class BookEditView(UpdateView):
+    model = Catalog
+    form_class = BooksForm
+    template_name = 'catalog/book_edit.html'
+
+    def get_success_url(self) -> str:
+        return reverse('book_detail',
+                       kwargs={'pk': self.object.pk})
 
 #todo
-def book_delete(request: HttpRequest,pk)->HttpResponse:
-    #only if admin
-    return render(request, 'catalog/books_delete.html', context)
+# def book_delete(request: HttpRequest,pk)->HttpResponse:
+#     #only if admin
+#     return render(request, 'catalog/books_delete.html', context)
 
-def book_edit(request: HttpRequest,pk)->HttpResponse:
-    #only if admin
-    #add validations
-    return render(request, 'catalog/books_edit.html', context)
+
+class BookDeleteView(DeleteView):
+    model = Catalog
+    # form_class = DeleteBookForm
+    template_name = 'catalog/book_delete.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["form"] = DeleteBookForm(instance=self.object)
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+
+        form = DeleteBookForm(instance=self.object)
+
+        self.object.delete()
+
+        return render(request, "catalog/book_confirm_delete.html", {
+            "form": form
+        })
+
+
+# def book_edit(request: HttpRequest,pk)->HttpResponse:
+#     #only if admin
+#     #add validations
+#     return render(request, 'catalog/books_edit.html', context)

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="box-details">
+    <h1>✅ Book successfully deleted</h1>
+
+    <form>
+        {{ form.as_p }}
+    </form>
+
+    <a href="{% url 'all_books' %}">
+        <button>Back to catalog</button>
+    </a>
+</div>
+
+{% endblock %}

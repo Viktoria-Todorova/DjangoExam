@@ -18,6 +18,7 @@
                     <th>Writer</th>
                     <th>Genre</th>
                     <th>Availability</th>
+                    <th>Details</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,11 @@
                         {% else %}
                             <span class="status-badge unavailable">✗ Not Available</span>
                         {% endif %}
+                    </td>
+                    <td>
+                      <a href="{% url 'book_detail' book.id %}">
+                          <button type="button">Details</button>
+                      </a>
                     </td>
                 </tr>
                 {% empty %}

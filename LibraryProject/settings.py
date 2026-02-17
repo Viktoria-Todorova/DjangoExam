@@ -30,12 +30,12 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost',
-    'lizabeth-grilla-kittie.ngrok-free.dev'] #we never do it in production
+    '.ngrok-free.dev'] #we never do it in production
 
 CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1',
     'http://localhost',
-    'https://lizabeth-grilla-kittie.ngrok-free.dev']
+    "https://*.ngrok-free.dev"]
 
 
 # Application definition

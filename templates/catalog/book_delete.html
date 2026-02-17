@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="box-details">
+        <h1>DELETE</h1>
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <button class="delete-btn" type="submit">Delete</button>
+        </form>
+    </div>
+{% endblock %}

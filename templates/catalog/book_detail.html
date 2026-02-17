@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'home.css' %}">{% endblock %}
+{% block content %}
+    <div class="box-details">
+        <h2>{{ book.title }}</h2>
+        <div>
+            <p><strong>Author:</strong> {{ book.writer }}</p>
+            <p><strong>Genre:</strong> {{ book.genre }}</p>
+            <p><strong>Series:</strong> {{ book.name_of_series }}</p>
+            <p><strong>Quantity:</strong> {{ book.quantity }}</p>
+        </div>
+
+        <div class="buttons-order">
+            <a href="{% url 'book_edit' book.id %}">
+                <button>Edit</button>
+            </a>
+
+            <a href="{% url 'book_delete' book.id %}">
+                <button>Delete</button>
+            </a>
+
+        </div>
+
+    </div>
+{% endblock %}

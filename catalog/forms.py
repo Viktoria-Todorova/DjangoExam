@@ -20,3 +20,22 @@ class GenreFilterForm(forms.Form):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['genre'].choices = [('', 'All Genres')] + list(Catalog.Genre.choices)
+
+class BooksForm(forms.ModelForm):
+    class Meta:
+        model = Catalog
+        fields = ['title', 'writer', 'genre','quantity']
+
+        widgets = {
+            'title': forms.TextInput(attrs={'placeholder': 'Book Title ....'}),
+            'writer': forms.TextInput(attrs={'placeholder': 'Writer ....'}),
+            'genre': forms.Select(attrs={'placeholder': 'Genre ....'}),
+            'quantity': forms.NumberInput(attrs={'placeholder': 'Book Quantity ....'}),
+        }
+
+class DeleteBookForm(BooksForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self.fields.values():
+            field.widget.attrs['disabled'] = True
+            field.widget.attrs['readonly'] = True

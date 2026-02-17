@@ -7,20 +7,20 @@
 {% block content %}
 <main class="register-book">
     <div class = 'box-details book-box' >
-        <h1>{{ book.title }}</h1>
+        <h2>The ancient tome you seek from my magic library is:</h2>
+        <h1><strong>{{ book.title }}</strong></h1>
 
-        <p>Author: {{ book.writer }}</p>
-        <p>Genre: {{ book.genre }}</p>
-
+        <p>Authored by: {{ book.writer }}</p>
+        <p>Genre of forbidden magic: {{ book.genre }}</p>
 
     </div>
 
     <div class="box-details form-box">
-        <h1>I need your details for your soul if you don't return the book</h1>
+        <h1>I need your details… in case your soul must be collected if you fail to return the book.</h1>
         <form method="post" action="{% url 'register' book.id %}">
             {% csrf_token %}
             {{ form }}
-            <button type="submit">Rent</button>
+            <button type="submit">I rent with caution</button>
         </form>
 
         </div>
