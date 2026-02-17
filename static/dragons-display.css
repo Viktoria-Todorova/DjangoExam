@@ -1,11 +1,10 @@
-.order-fireworks {
+.dragons-images{
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     gap: 2em;
     justify-content: center;
-    align-items: flex-start;
+    padding: 1em;
 }
-
 .box-details img{
     max-width: 150px;
 }

@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block css %}<link rel="stylesheet" href="{% static 'table.css' %}">{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static 'table.css' %}">
+{% endblock %}
+
 {% block content %}
     <div class="table-container">
         <h1 class="table-title">Book Collection</h1>
+
+        <form method="get" class="filter-form">
+            {{ form.genre }}
+        </form>
+
         <table>
             <thead>
                 <tr>
@@ -18,7 +25,7 @@
                 <tr>
                     <td class="book-title">{{ book.title }}</td>
                     <td>{{ book.writer }}</td>
-                    <td><span class="genre-badge">{{ book.genre }}</span></td>
+                    <td><span class="genre-badge">{{ book.get_genre_display }}</span></td>
                     <td>
                         {% if book.quantity >= 1 %}
                             <span class="status-badge available">✓ Available</span>
@@ -27,8 +34,30 @@
                         {% endif %}
                     </td>
                 </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4" class="no-books">No books found</td>
+                </tr>
                 {% endfor %}
             </tbody>
         </table>
+
+    {% if page_obj.has_other_pages %}
+            <div class="pagination">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1{% if form.genre.value %}&genre={{ form.genre.value }}{% endif %}" class="page-link">« First</a>
+                    <a href="?page={{ page_obj.previous_page_number }}{% if form.genre.value %}&genre={{ form.genre.value }}{% endif %}" class="page-link">‹ Previous</a>
+                {% endif %}
+
+                <span class="page-current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}{% if form.genre.value %}&genre={{ form.genre.value }}{% endif %}" class="page-link">Next ›</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}{% if form.genre.value %}&genre={{ form.genre.value }}{% endif %}" class="page-link">Last »</a>
+                {% endif %}
+            </div>
+        {% endif %}
     </div>
 {% endblock %}

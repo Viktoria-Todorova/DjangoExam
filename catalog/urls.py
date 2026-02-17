@@ -1,8 +1,8 @@
 from django.urls import path
 
-from catalog.views import search_books, all_books
+from catalog.views import SearchBooksView, AllBooksView
 
 urlpatterns = [
-    path('',search_books,name='home'),
-    path('all_books/',all_books,name='all_books'),
+    path('',SearchBooksView.as_view(),name='home'),
+    path('all_books/',AllBooksView.as_view(),name='all_books'),
 ]
