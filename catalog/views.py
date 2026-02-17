@@ -1,3 +1,4 @@
+from django.core.exceptions import PermissionDenied
 from django.db.models import QuerySet
 from django.http import HttpResponse, HttpRequest,HttpResponseBadRequest
 from django.shortcuts import render
@@ -116,9 +117,15 @@ class BookEditView(UpdateView):
     form_class = BooksForm
     template_name = 'catalog/book_edit.html'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
+
     def get_success_url(self) -> str:
         return reverse('book_detail',
                        kwargs={'pk': self.object.pk})
+
 
 #todo
 # def book_delete(request: HttpRequest,pk)->HttpResponse:
@@ -130,22 +137,18 @@ class BookDeleteView(DeleteView):
     model = Catalog
     # form_class = DeleteBookForm
     template_name = 'catalog/book_delete.html'
+    success_url = reverse_lazy('all_books')
+
+    #i rewrite dispatch so i can forbit for non admins to delete books
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_staff:
+            raise PermissionDenied
+        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["form"] = DeleteBookForm(instance=self.object)
         return context
-
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-
-        form = DeleteBookForm(instance=self.object)
-
-        self.object.delete()
-
-        return render(request, "catalog/book_confirm_delete.html", {
-            "form": form
-        })
 
 
 # def book_edit(request: HttpRequest,pk)->HttpResponse:
