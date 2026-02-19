@@ -17,10 +17,12 @@
             {% endif %}
             <p class="grimoire-body">{{ grimoire.body|truncatechars:300 }}</p>
             <a href="{% url 'grimoire-detail' grimoire.pk %}" class="grimoire-button">Read more →</a>
+
 </div>
     {% empty %}
         <h1>No grimoires yet… the spellbook is empty 📖</h1>
     {% endfor %}
 
 </div>
+    {% include 'pagination.html' %}
 {% endblock %}

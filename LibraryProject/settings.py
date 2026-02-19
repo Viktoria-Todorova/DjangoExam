@@ -46,6 +46,7 @@ PROJECT_APPS =[
     'users',
     'dragons',
     'grimoire',
+    'potions',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',

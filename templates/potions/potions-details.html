@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'potions/secret-potions.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <h1>📖 The Secret Grimoire</h1>
+    <h2 >Ancient recipes hidden within the cauldron's memory</h2>
+
+    <div class="potions-grid">
+        {% for potion in potions %}
+        <div class="box-details potion-card">
+            <span class="card-icon">🧪</span>
+            <h3 class="card-title">{{ potion.potion }}</h3>
+            <div class="card-ingredients">
+                <span class="ingredient herb">🌱 {{ potion.herb }}</span>
+                <span class="ingredient liquid">💧 {{ potion.liquid }}</span>
+                <span class="ingredient item">💎 {{ potion.items }}</span>
+            </div>
+        </div>
+        {% empty %}
+            <p class="empty-state">No secret potions found... 🌙</p>
+        {% endfor %}
+    </div>
+    {% include 'pagination.html' %}
+</div>
+
+{% endblock %}

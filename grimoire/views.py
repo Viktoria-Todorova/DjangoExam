@@ -22,11 +22,13 @@ class GrimoireListView(ListView):
     template_name = 'grimoire/grimoire_list.html'
     context_object_name = 'grimoires'
     ordering = ['-created_at']
+    paginate_by = 3
 
 class GrimoireDetailView(DetailView):
     model = Grimoire
     template_name = 'grimoire/grimoire_detail.html'
     context_object_name = 'grimoire'
+
 
 
 class GrimoireEditView(UpdateView):

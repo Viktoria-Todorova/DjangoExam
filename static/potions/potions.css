@@ -1,0 +1,277 @@
+.game-container{
+    display: flex;
+    flex-direction: row;
+    gap: 5em;
+}
+.subtitle {
+    color: #f4e4c1;
+    font-style: italic;
+    font-size: 1.2em;
+    margin-bottom: 1.5em;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    letter-spacing: 1px;
+}
+
+.brewing-box {
+    width: 90%;
+    max-width: 700px;
+    padding: 2em 2.5em !important;
+    gap: 1.2em !important;
+}
+
+.box-title {
+    color: #d4af37;
+    font-size: 1.4em;
+    letter-spacing: 2px;
+    text-shadow:
+        1px 1px 3px rgba(0,0,0,0.8),
+        0 0 12px rgba(212,175,55,0.4);
+    margin-bottom: 0.5em;
+}
+
+
+.brew-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2em;
+}
+
+.ingredient-row {
+    display: flex;
+    gap: 1em;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.ingredient-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    flex: 1;
+    min-width: 150px;
+}
+
+.ingredient-group label {
+    color: #f4e4c1;
+    font-size: 0.85em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+/* Style the Django-rendered select */
+.ingredient-group select {
+    width: 100%;
+    background: linear-gradient(135deg,
+        rgba(26, 24, 44, 0.9),
+        rgba(45, 35, 66, 0.9));
+    border: 2px solid #8b6914;
+    border-radius: 4px;
+    color: #f4e4c1;
+    padding: 0.6em 0.9em;
+    font-family: "Macondo", cursive;
+    font-size: 1em;
+    cursor: pointer;
+    appearance: none;
+    background-image:
+        linear-gradient(135deg, rgba(26,24,44,0.9), rgba(45,35,66,0.9)),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23d4af37' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat, no-repeat;
+    background-position: 0 0, right 0.8em center;
+    transition: all 0.3s ease;
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.4),
+        inset 0 1px 3px rgba(255,255,255,0.05);
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+.ingredient-group select:focus {
+    outline: none;
+    border-color: #d4af37;
+    box-shadow:
+        0 4px 20px rgba(212,175,55,0.3),
+        inset 0 1px 5px rgba(255,255,255,0.1);
+}
+
+.ingredient-group select option {
+    background: #1a1828;
+    color: #f4e4c1;
+}
+
+/* ── Cauldron ────────────────────────────────────────────── */
+.cauldron-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5em;
+}
+
+.cauldron-svg {
+    width: 130px;
+    height: 110px;
+    filter: drop-shadow(0 0 12px rgba(212,175,55,0.35));
+}
+
+/* ── Result box ──────────────────────────────────────────── */
+.result-box {
+    width: 100%;
+    padding: 1em 1.5em;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.05em;
+    animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    color: #f4e4c1;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+@keyframes popIn {
+    from { transform: scale(0.85); opacity: 0; }
+    to   { transform: scale(1);    opacity: 1; }
+}
+
+.result-box.success {
+    background: linear-gradient(135deg,
+        rgba(74, 180, 100, 0.15),
+        rgba(45, 35, 66, 0.8));
+    border: 2px solid rgba(212, 175, 55, 0.6);
+    box-shadow:
+        0 0 25px rgba(212,175,55,0.25),
+        inset 0 0 15px rgba(212,175,55,0.1);
+}
+
+.result-box.fail {
+    background: linear-gradient(135deg,
+        rgba(139, 30, 30, 0.2),
+        rgba(45, 35, 66, 0.8));
+    border: 2px solid rgba(139, 105, 20, 0.5);
+}
+
+.result-emoji {
+    font-size: 2em;
+    display: block;
+    margin-bottom: 0.2em;
+}
+
+.result-name {
+    color: #ffd700;
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-top: 0.3em;
+    text-shadow:
+        1px 1px 3px rgba(0,0,0,0.8),
+        0 0 12px rgba(255,215,0,0.5);
+    letter-spacing: 1px;
+}
+
+.fail-name {
+    color: #f4a460;
+    text-shadow:
+        1px 1px 3px rgba(0,0,0,0.8),
+        0 0 10px rgba(244,164,96,0.4);
+}
+
+/* ── Discovered potions box ──────────────────────────────── */
+.discovered-box {
+    width: 90%;
+    max-width: 700px;
+    padding: 2em 2.5em !important;
+    gap: 1em !important;
+    margin-top: 0.5em;
+}
+
+.potion-list {
+    list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #8b6914 transparent;
+}
+
+.potion-item {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+    padding: 0.5em 0.9em;
+    background: linear-gradient(135deg,
+        rgba(26, 24, 44, 0.7),
+        rgba(45, 35, 66, 0.5));
+    border: 1px solid rgba(139, 105, 20, 0.4);
+    border-radius: 4px;
+    color: #f4e4c1;
+    font-size: 0.95em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+    transition: all 0.2s ease;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(15px); opacity: 0; }
+    to   { transform: translateX(0);    opacity: 1; }
+}
+
+.potion-item:hover {
+    border-color: #d4af37;
+    box-shadow: 0 0 10px rgba(212,175,55,0.2);
+}
+
+.potion-dot {
+    color: #d4af37;
+    font-size: 0.8em;
+    text-shadow: 0 0 8px rgba(212,175,55,0.7);
+    flex-shrink: 0;
+}
+
+.empty-state {
+    color: #f4e4c1;
+    font-style: italic;
+    opacity: 0.6;
+    text-align: center;
+    padding: 1em;
+    font-size: 1em;
+}
+
+/* ── Progress bar ────────────────────────────────────────── */
+.progress-wrap {
+    width: 100%;
+    margin-top: 0.5em;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(26, 24, 44, 0.8);
+    border: 1px solid #8b6914;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #8b6914, #d4af37, #ffd700);
+    border-radius: 4px;
+    transition: width 0.6s ease;
+    box-shadow: 0 0 8px rgba(212,175,55,0.5);
+}
+
+.progress-label {
+    text-align: right;
+    color: #f4e4c1;
+    font-size: 0.8em;
+    margin-top: 0.4em;
+    opacity: 0.7;
+    letter-spacing: 0.5px;
+}
+
+.field-error {
+    color: #f87171;
+    font-size: 0.85em;
+    margin-top: 0.3em;
+    text-shadow: 0 0 8px rgba(248, 113, 113, 0.4);
+}

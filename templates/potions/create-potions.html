@@ -1,28 +1,95 @@
 {% extends "base.html" %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'potions/potions.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<div class="box-details">
-    <h2>🧪 Brew a Potion</h2>
+  <h1>🧙 The Witch's Cauldron</h1>
+  <p class="subtitle">Combine herbs, liquids & enchanted items to discover ancient potions</p>
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form }}
-        <button type="submit">Brew Potion</button>
-    </form>
-</div>
+<div class="game-container">
+  <div class="box-details brewing-box">
+    <h2 class="box-title">🌿 Brewing Station</h2>
 
-{% if result %}
-    <div class="box-details">
-        {% if result == "success" %}
-            <h2>✨ SUCCESS!</h2>
-            <p>You brewed:</p>
-            <h3>{{ potion_name }}</h3>
-        {% else %}
-            <h2>💥 FAILED!</h2>
-            <p>You created:</p>
-            <h3>{{ potion_name }}</h3>
+    <form method="POST" class="brew-form">
+      {% csrf_token %}
+        {{ form.magician }}
+        {% if form.magician.errors %}
+            <p class="field-error">{{ form.magician.errors.0 }}</p>
         {% endif %}
-    </div>
-{% endif %}
+      <div class="ingredient-row">
+        <div class="ingredient-group">
+          <label>🌱 Herb</label>
+          {{ form.herb }}
+        </div>
+        <div class="ingredient-group">
+          <label>💧 Liquid</label>
+          {{ form.liquid }}
+        </div>
+        <div class="ingredient-group">
+          <label>💎 Item</label>
+          {{ form.item }}
+        </div>
+      </div>
+
+
+      <div class="cauldron-wrap">
+        <svg viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg" class="cauldron-svg">
+          <line x1="35" y1="85" x2="25" y2="100" stroke="#8b6914" stroke-width="5" stroke-linecap="round"/>
+          <line x1="85" y1="85" x2="95" y2="100" stroke="#8b6914" stroke-width="5" stroke-linecap="round"/>
+          <ellipse cx="60" cy="72" rx="45" ry="12" fill="#1a1830"/>
+          <path d="M15 55 Q15 85 60 85 Q105 85 105 55 L98 40 Q90 30 60 30 Q30 30 22 40 Z" fill="#1a1830" stroke="#8b6914" stroke-width="2"/>
+          <ellipse cx="60" cy="52" rx="38" ry="10" fill="#4c3200" opacity="0.9"/>
+          <circle cx="50" cy="50" r="3" fill="#d4af37" opacity="0.7">
+            <animate attributeName="cy" from="52" to="40" dur="1.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" from="0.7" to="0" dur="1.5s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="68" cy="50" r="2" fill="#ffd700" opacity="0.7">
+            <animate attributeName="cy" from="52" to="38" dur="1.8s" repeatCount="indefinite" begin="0.6s"/>
+            <animate attributeName="opacity" from="0.7" to="0" dur="1.8s" repeatCount="indefinite" begin="0.6s"/>
+          </circle>
+          <circle cx="58" cy="51" r="2.5" fill="#d4af37" opacity="0.7">
+            <animate attributeName="cy" from="52" to="36" dur="2s" repeatCount="indefinite" begin="1s"/>
+            <animate attributeName="opacity" from="0.7" to="0" dur="2s" repeatCount="indefinite" begin="1s"/>
+          </circle>
+          <ellipse cx="60" cy="40" rx="42" ry="10" fill="none" stroke="#d4af37" stroke-width="2.5"/>
+          <path d="M18 55 Q5 45 18 38" stroke="#8b6914" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <path d="M102 55 Q115 45 102 38" stroke="#8b6914" stroke-width="4" stroke-linecap="round" fill="none"/>
+          <path d="M50 30 Q45 22 50 15 Q55 8 50 2" stroke="#d4af37" stroke-width="1.5" fill="none" stroke-linecap="round">
+            <animate attributeName="opacity" values="0.5;0" dur="2s" repeatCount="indefinite"/>
+          </path>
+          <path d="M60 28 Q55 18 60 10 Q65 2 60 -4" stroke="#d4af37" stroke-width="1.5" fill="none" stroke-linecap="round">
+            <animate attributeName="opacity" values="0.4;0" dur="2.5s" repeatCount="indefinite" begin="0.5s"/>
+          </path>
+          <path d="M70 30 Q75 22 70 15 Q65 8 70 2" stroke="#d4af37" stroke-width="1.5" fill="none" stroke-linecap="round">
+            <animate attributeName="opacity" values="0.5;0" dur="2.2s" repeatCount="indefinite" begin="1s"/>
+          </path>
+        </svg>
+      </div>
+
+      <button type="submit">🔮 Brew Potion</button>
+    </form>
+
+    {% if result %}
+      <div class="result-box {{ result }}">
+        {% if result == "success" %}
+          <span class="result-emoji">✨</span>
+          <p>Potion discovered!</p>
+          <p class="result-name">{{ potion_name }}</p>
+            <a href="{% url 'secret_potions' %}"><button>See magic potion book</button></a>
+        {% else %}
+          <span class="result-emoji">💨</span>
+          <p>The brew went wrong...</p>
+          <p class="result-name fail-name">{{ potion_name }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+  </div>
+
+</div>
 
 {% endblock %}
