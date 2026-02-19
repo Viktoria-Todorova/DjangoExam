@@ -6,9 +6,6 @@
 
 }
 
-
-
-
 .library-header h2 {
     margin-top: 1em;
 }
@@ -75,4 +72,78 @@
     flex-wrap: wrap;
     gap: 20px;
     margin-top: 20px;
+}
+
+/* Magical story panel */
+.library-story {
+    max-width: 750px;
+    margin: 40px auto 60px auto;
+    padding: 2.2em 2.5em;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    text-align: center;
+
+    color: #e8ddc3;
+
+    border: 3px solid #8b6914;
+    border-radius: 18px;
+
+    background: linear-gradient(145deg,
+        rgba(26, 24, 44, 0.92),
+        rgba(45, 35, 66, 0.92));
+
+    backdrop-filter: blur(8px);
+
+    box-shadow:
+        0 10px 40px rgba(0,0,0,0.75),
+        inset 0 0 25px rgba(212,175,55,0.15),
+        0 0 35px rgba(212,175,55,0.15);
+
+    position: relative;
+}
+
+/* glowing rune corners */
+.library-story::before,
+.library-story::after {
+    content: "✶";
+    position: absolute;
+    font-size: 1.6rem;
+    color: #d4af37;
+    opacity: 0.7;
+}
+
+.library-story::before {
+    top: 10px;
+    left: 18px;
+}
+
+.library-story::after {
+    bottom: 10px;
+    right: 18px;
+}
+
+/* Story title */
+.library-story h2 {
+    font-size: 2rem;
+    margin-bottom: 18px;
+    color: #ffd700;
+    letter-spacing: 3px;
+    text-shadow:
+        0 0 12px rgba(255,215,0,0.5),
+        0 0 25px rgba(212,175,55,0.3);
+}
+
+/* paragraph spacing */
+.library-story p {
+    margin-bottom: 1.2em;
+}
+
+/* whisper ending */
+.whisper {
+    margin-top: 25px;
+    font-style: italic;
+    color: #d8c8ff;
+    font-size: 1.2rem;
+    text-shadow: 0 0 12px rgba(180,140,255,0.5);
+    opacity: 0.95;
 }

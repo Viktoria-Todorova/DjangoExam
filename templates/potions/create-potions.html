@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="box-details">
+    <h2>🧪 Brew a Potion</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Brew Potion</button>
+    </form>
+</div>
+
+{% if result %}
+    <div class="box-details">
+        {% if result == "success" %}
+            <h2>✨ SUCCESS!</h2>
+            <p>You brewed:</p>
+            <h3>{{ potion_name }}</h3>
+        {% else %}
+            <h2>💥 FAILED!</h2>
+            <p>You created:</p>
+            <h3>{{ potion_name }}</h3>
+        {% endif %}
+    </div>
+{% endif %}
+
+{% endblock %}
