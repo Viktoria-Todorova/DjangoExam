@@ -1,7 +1,7 @@
 from django import forms
 
 from users.models import User
-from intl_tel_input.widgets import IntlTelInputWidget
+
 
 class UserForm(forms.ModelForm):
     class Meta:

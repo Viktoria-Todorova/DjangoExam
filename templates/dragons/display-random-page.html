@@ -3,16 +3,16 @@
 {% block css %}<link rel="stylesheet" href="{% static 'random.css' %}">{% endblock %}
 
 {% block content %}
-<main class = 'order-fireworks'>
+<main class = 'order'>
 
 
-    <div class="box-details" >
-        <h1>You matched with</h1>
+    <div class="box-details dragon" >
+        <h2>You matched with</h2>
         <h2>{{ dragon.name }}</h2>
         <img src="{% static 'dragons/'|add:dragon.photo %}" alt="{{ dragon.name }}">
     </div>
 
-    <div class="box-details">
+    <div class="box-details about-me">
         <h1>A little bit about me</h1>
         <p>{{ dragon.description }}</p>
     </div>

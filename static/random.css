@@ -1,9 +1,26 @@
-.order-fireworks {
+.order {
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    gap: 1em;
+    padding: 2em;
+    align-items: center;
+    align-self: stretch;
+    justify-content: center;
 }
 
-.box-details img{
+.dragon {
+    max-width: none;
+    margin: 0;
+    flex-shrink: 0;    /* stays fixed */
+    width: 300px;
+}
+
+.about-me {
+    max-width: none;
+    margin: 0;
+    flex: 0.5;           /* grows with text */
+}
+
+.box-details img {
     max-width: 150px;
 }

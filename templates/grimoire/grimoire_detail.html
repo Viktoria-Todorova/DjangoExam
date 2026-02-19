@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'grimoire/grimoire_detail.css' %}">{% endblock %}
+{% block content %}
+
+<div class="grimoire-card">
+    <div class="box-details" >
+        <h1>{{ grimoire.get_type_of_story_display }}</h1>
+        <p class="grimoire-meta">
+            ✨ {{ grimoire.magician }} &nbsp;·&nbsp; 🕯 {{ grimoire.created_at|date:"M d, Y" }}
+        </p>
+        {% if grimoire.image %}
+            <img src="{{ grimoire.image.url }}" alt="grimoire image" >
+        {% endif %}
+        <p>{{ grimoire.body }}</p>
+        <div class="buttons-order">
+            <a href="{% url 'grimoire_list' %}"><button>← Back to Shelf</button></a>
+             <a href="{% url 'grimoire-edit' grimoire.pk %}"><button>Edit</button></a>
+            <a href="{% url 'grimoire-delete' grimoire.pk%}"><button>Delete</button></a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

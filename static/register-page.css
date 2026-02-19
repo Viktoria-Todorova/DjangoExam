@@ -18,6 +18,6 @@
 .book-box:hover {
     color: #49d3ba;
 }
-.book-box:hover h1{
+.book-box:hover h3{
     color: rgba(253, 2, 49, 0.86);
 }

@@ -1,0 +1,25 @@
+.grimoire-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    padding: 2em;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.grimoire-card {
+    max-width: none;
+    width: 100%;
+    min-height: unset;
+    margin: 0;
+    text-align: left;
+    align-items: flex-start;
+}
+
+.grimoire-card img{
+    max-width: 300px;
+}
+
+.grimoire-button{
+    color: wheat;
+}

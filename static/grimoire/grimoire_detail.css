@@ -1,0 +1,26 @@
+.grimoire-card {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+}
+
+.grimoire-card .box-details {
+    max-width: 500px;   /* override the 350px from base.css */
+    width: 100%;
+    text-align: left;
+    align-items: flex-start;
+    padding: 3em;
+
+}
+
+.grimoire-card .box-details img {
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid #8b6914;
+    margin-bottom: 1em;
+}
+
+.grimoire-card .box-details p {
+    line-height: 1.8;
+
+}

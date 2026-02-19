@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'grimoire/grimoire_list.css' %}">{% endblock %}
+{% block content %}
+<h1>📜 The Grimoire Shelf</h1>
+    <a href="{% url 'grimoire-create' %}" class="grimoire-button"><button type="submit">Submit Grimoire</button></a>
+
+<div class="grimoire-grid">
+    {% for grimoire in grimoires %}
+        <div class="box-details grimoire-card">
+            <h3>{{ grimoire.get_type_of_story_display }}</h3>
+            <p class="grimoire-meta">
+                ✨ {{ grimoire.magician }} &nbsp;·&nbsp; 🕯 {{ grimoire.created_at|date:"M d, Y" }}
+            </p>
+            {% if grimoire.image %}
+                <img src="{{ grimoire.image.url }}" alt="grimoire image" class="grimoire-img">
+            {% endif %}
+            <p class="grimoire-body">{{ grimoire.body|truncatechars:300 }}</p>
+            <a href="{% url 'grimoire-detail' grimoire.pk %}" class="grimoire-button">Read more →</a>
+</div>
+    {% empty %}
+        <h1>No grimoires yet… the spellbook is empty 📖</h1>
+    {% endfor %}
+
+</div>
+{% endblock %}

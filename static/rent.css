@@ -1,5 +1,7 @@
-
 .box-details h2:hover{
+    color: #ffd500;
+}
+.box-details h3:hover{
     color: #ff0000;
 }
 .box-details h3{

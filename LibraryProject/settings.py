@@ -45,6 +45,7 @@ PROJECT_APPS =[
     'circulation',
     'users',
     'dragons',
+    'grimoire',
 ]
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -141,3 +142,5 @@ STATIC_URL = '/static/'
 
 
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'

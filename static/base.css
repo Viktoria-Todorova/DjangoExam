@@ -136,7 +136,6 @@ button{
     letter-spacing: 1.5px;
     text-transform: uppercase;
     cursor: pointer;
-
     transition: all 0.3s ease;
     box-shadow:
         0 4px 20px rgba(0, 0, 0, 0.5),
@@ -144,6 +143,7 @@ button{
     text-shadow:
         1px 1px 3px rgba(0, 0, 0, 0.8),
         0 0 8px rgba(255, 215, 0, 0.4);
+
 }
 
 button:hover{
@@ -227,7 +227,17 @@ button:hover{
     opacity: 0.4;
     text-shadow: 0 0 10px rgba(212, 175, 55, 0.6);
 }
-
+ h1 {
+    color: #d4af37;
+    font-size: 3em;
+    margin: 0;
+    text-shadow:
+        2px 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(212, 175, 55, 0.5),
+        0 0 40px rgba(139, 69, 19, 0.3);
+    letter-spacing: 3px;
+    animation: flicker 3s ease-in-out infinite;
+}
 .magic-footer {
     background: linear-gradient(135deg, rgba(26, 24, 44, 0.9), rgba(45, 35, 66, 0.9));
     text-align: center;
@@ -266,3 +276,5 @@ button:hover{
     color: #d4af37;
     opacity: 0.6;
 }
+
+

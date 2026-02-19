@@ -1,0 +1,35 @@
+.box-details textarea {
+    width: 100%;
+    padding: 0.8em 1em;           /* space inside */
+    border-radius: 8px;
+    border: 2px solid #8b6914;
+    background: rgba(26, 24, 44, 0.7);
+    color: #f4e4c1;
+    font-family: "Macondo", cursive;
+    font-size: 1em;
+    resize: vertical;
+    box-shadow:
+        inset 0 0 10px rgba(139, 105, 20, 0.2),
+        0 0 10px rgba(0, 0, 0, 0.4);
+}
+
+.box-details textarea:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow:
+        0 0 12px rgba(255, 215, 0, 0.6),
+        inset 0 0 12px rgba(139, 105, 20, 0.3);
+}
+
+.box-details select {
+    padding: 0.6em 1em;
+    border-radius: 8px;
+    border: 2px solid #8b6914;
+    background: rgba(26, 24, 44, 0.7);
+    color: #f4e4c1;
+    font-family: "Macondo", cursive;
+}
+
+button{
+    margin-top: 1.5em;
+}
