@@ -8,6 +8,9 @@ class UserForm(forms.ModelForm):
         model = User
         fields = '__all__'
         widgets = {
+            'username': forms.TextInput(attrs={
+                'placeholder': 'Enter your Username magician....',
+            }),
             'first_name': forms.TextInput(attrs={
                 'placeholder': 'Enter your first name'
             }),
@@ -20,3 +23,5 @@ class UserForm(forms.ModelForm):
                 'placeholder': 'your.email@example.com'
             }),
         }
+
+

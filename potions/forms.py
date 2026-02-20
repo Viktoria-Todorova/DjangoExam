@@ -75,17 +75,18 @@ class CreatePotionForm(forms.Form):
     magician = forms.CharField(
         max_length=100,
         required=True,
-        widget=forms.TextInput(attrs={"placeholder": "First and last name..."}),
+        widget=forms.TextInput(attrs={"placeholder": "Enter Username..."}),
     )
     herb = forms.ChoiceField(choices=HERB_CHOICES)
     liquid = forms.ChoiceField(choices=LIQUID_CHOICES)
     item = forms.ChoiceField(choices=ITEM_CHOICES)
 
     def clean_magician(self):
-        magician = self.cleaned_data["magician"].strip()
-        first_name, last_name = magician.split(' ')
+        username = self.cleaned_data["magician"]
+
         try:
-            return User.objects.get(first_name=first_name, last_name=last_name)
+            magician = User.objects.get(username=username)
+            return magician
         except User.DoesNotExist:
-            raise forms.ValidationError('There is no such magician')
+            raise forms.ValidationError('No magician with this username exists!')
 

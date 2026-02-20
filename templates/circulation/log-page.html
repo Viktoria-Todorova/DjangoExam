@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'users/register-page.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<main class="register-book">
+    <div class = 'box-details book-box' >
+        <h2>The ancient tome you seek from my magic library is:</h2>
+        <h3><strong>{{ book.title }}</strong></h3>
+
+        <p>Authored by: {{ book.writer }}</p>
+        <p>Genre of forbidden magic: {{ book.genre }}</p>
+
+    </div>
+
+    <div class="box-details form-box">
+        <h2>I need your details… in case your soul must be collected if you fail to return the book.</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form }}
+            <button type="submit">I rent with caution</button>
+        </form>
+
+        </div>
+</main>
+    {% include 'if_missing_username.html' %}
+{#    <h1>If you don't have an account</h1>#}
+{#    <a href="{% url 'create_user' %}"><button>Create here</button></a>#}
+
+{% endblock %}

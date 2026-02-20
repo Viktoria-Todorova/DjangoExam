@@ -1,4 +1,6 @@
 # import phonenumbers
+import re
+
 from django.core.exceptions import ValidationError
 from django.utils.deconstruct import deconstructible
 
@@ -29,16 +31,12 @@ class EmailValidator:
             raise ValidationError(f'Email address must be in {' | '.join(self.allowed_domains)}!!')
 
 
-# @deconstructible
-# class InternationalPhoneNumberValidator:
-#     def __init__(self,default_region='BG'):
-#         self.default_region = default_region
-#
-#     def __call__(self, value):
-#         try:
-#             parsed = phonenumbers.parse(value, None)
-#
-#             if not phonenumbers.is_valid_number(parsed):
-#                 raise ValidationError('Invalid phone number')
-#         except phonenumbers.NumberParseException:
-#             raise ValidationError('Invalid phone number format')
+@deconstructible
+class UsernameValidator:
+    regex = r'^[A-Za-z0-9_]+$'
+    invalid_message = "Oops! Your username can only use letters, numbers, and underscores — no sneaky symbols allowed."
+
+
+    def __call__(self, value):
+        if not re.match(self.regex, value):
+            raise ValidationError(self.invalid_message)

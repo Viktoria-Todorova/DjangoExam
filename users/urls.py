@@ -4,5 +4,7 @@ from users import views
 
 
 urlpatterns = [
-    path('<int:book_id>/', views.register, name='register'),
+    path('',views.create_user,name='create_user'),
+
 ]
+
