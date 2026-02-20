@@ -90,3 +90,4 @@ class CreatePotionForm(forms.Form):
         except User.DoesNotExist:
             raise forms.ValidationError('No magician with this username exists!')
 
+# class PotionFilterForm(forms.Form):

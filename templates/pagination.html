@@ -1,9 +1,9 @@
-
+{% if is_paginated %}
 <div class="pagination">
 
     {% if page_obj.has_previous %}
-        <a href="?page=1&{{ request.GET.urlencode|safe }}">« First</a>
-        <a href="?page={{ page_obj.previous_page_number }}&{{ request.GET.urlencode|safe }}">‹ Previous</a>
+        <a href="?{{ request.GET.urlencode }}&page=1">« First</a>
+        <a href="?{{ request.GET.urlencode }}&page={{ page_obj.previous_page_number }}">‹ Previous</a>
     {% endif %}
 
     <span>
@@ -11,8 +11,9 @@
     </span>
 
     {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}&{{ request.GET.urlencode|safe }}">Next ›</a>
-        <a href="?page={{ page_obj.paginator.num_pages }}&{{ request.GET.urlencode|safe }}">Last »</a>
+        <a href="?{{ request.GET.urlencode }}&page={{ page_obj.next_page_number }}">Next ›</a>
+        <a href="?{{ request.GET.urlencode }}&page={{ page_obj.paginator.num_pages }}">Last »</a>
     {% endif %}
 
 </div>
+{% endif %}

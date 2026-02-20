@@ -1,7 +1,7 @@
 from django.core.exceptions import PermissionDenied
+
 from django.db.models import QuerySet
 from django.http import HttpResponse, HttpRequest,HttpResponseBadRequest
-from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, UpdateView, DetailView, DeleteView
 
@@ -24,6 +24,7 @@ class SearchBooksView(ListView):
                 return Catalog.objects.filter(title__icontains=searched_book)
 
         return Catalog.objects.none()
+
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -49,44 +50,11 @@ class AllBooksView(ListView):
 
         return qs
 
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['form'] = GenreFilterForm(self.request.GET)
         return context
-# # Create your views here.
-# def search_books(request: HttpRequest)->HttpResponse:
-#     form = SearchForm(request.GET or None)
-#     books = Catalog.objects.none()
-#
-#     searched_book =''
-#
-#     if request.GET and form.is_valid():
-#         searched_book = form.cleaned_data['book_name']
-#         books = Catalog.objects.filter(title__icontains=searched_book)
-#
-#     context = {
-#         'form': form,
-#         'books': books,
-#         'searched_book': searched_book,
-#     }
-#     return render(request, 'catalog/home.html',context)
-#
-#
-#
-#
-# #todo i want to filter them by genre
-# def all_books(request: HttpRequest) -> HttpResponse:
-#     form = GenreFilterForm(request.GET or None)
-#     books = Catalog.objects.all()
-#     if form.is_valid():
-#         genre = form.cleaned_data['genre']
-#         if genre:
-#             books = books.filter(genre=genre)
-#     context = {
-#         'books': books,
-#         'form': form,
-#     }
-#     return render(request, 'catalog/all_books.html', context)
 
 
 class CatalogListView(ListView):
