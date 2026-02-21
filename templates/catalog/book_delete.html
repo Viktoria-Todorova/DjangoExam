@@ -2,7 +2,9 @@
 {% block content %}
 
     <div class="box-details">
-        <h1>DELETE</h1>
+        <h1>Delete</h1>
+        <p>This action cannot be undone. Are you sure?</p>
+
         <form method="post">
             {{ form.as_p }}
             {% csrf_token %}

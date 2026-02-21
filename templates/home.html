@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}<link rel="stylesheet" href="{% static 'home.css' %}">{% endblock %}
+{% block content %}
+
+<main class="library-header">
+    <h1>WELCOME TO THE WORLD OF MAGIC</h1>
+
+    <section class="library-story">
+        <h2>The Librarian Who Remembered Every Story</h2>
+
+        <p>
+            No one knows when the Secret Library first appeared.
+            One morning, between two ordinary buildings, a wooden door simply existed —
+            warm to the touch even in winter.
+        </p>
+
+        <p>
+            Most people never noticed it. Their eyes slipped past it, their thoughts ignored it.
+            But a few stopped. The chosen ones.
+        </p>
+
+        <p>
+            Inside were shelves stretching beyond sight, ladders climbing into mist,
+            and knowledge too powerful to be kept in only one form.
+        </p>
+
+        <p class="whisper">
+            Choose your path wisely…
+        </p>
+    </section>
+
+    <section class="magic-realms">
+        <h1>The Realms of Knowledge</h1>
+
+        <div class="realm-cards">
+            <a href="{% url 'all_books' %}" class="realm-card">
+                <h3>📚 Secret Library</h3>
+                <p>Ancient and forbidden books waiting to be discovered.</p>
+            </a>
+
+            <a href="{% url 'create_potion' %}" class="realm-card">
+                <h3>🧪 Magic Potions</h3>
+                <p>Elixirs brewed from moonlight, ash, and memory.</p>
+            </a>
+
+            <a href="{% url 'display-dragons' %}" class="realm-card">
+                <h3>🐉 Dragons</h3>
+                <p>Creatures of fire, sky, and forgotten legends.</p>
+            </a>
+
+            <a href="{% url 'grimoire_list' %}" class="realm-card">
+                <h3>📜 Grimoires</h3>
+                <p>Living spellbooks born from human souls — each grimoire was once a person whose story became magic.</p>
+            </a>
+        </div>
+    </section>
+</main>
+
+{% endblock %}

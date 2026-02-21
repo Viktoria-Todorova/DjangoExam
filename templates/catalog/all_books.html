@@ -7,9 +7,14 @@
     <div class="table-container">
         <h1 class="table-title">Book Collection</h1>
 
-        <form method="get" class="filter-form">
+        <div class="buttons-for-books">
+            <form method="get" class="filter-form">
             {{ form.genre }}
-        </form>
+            </form>
+
+            <a href="{% url 'search_books' %}"><button>Rent a Magic Tome!</button></a>
+        </div>
+
 
         <table>
             <thead>

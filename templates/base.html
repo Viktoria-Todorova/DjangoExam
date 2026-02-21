@@ -13,7 +13,6 @@
 <body>
     <header class="section site-header">
         <a href="{% url 'home' %}"><img src="{% static 'images/logo.gif' %}"></a>
-{#        <img src="{% static 'images/logo.gif' %}">#}
 
         <nav>
             <ul>
@@ -36,7 +35,7 @@
         <p>📚 Magic Library &copy; 2026</p>
         <p>Crafted with ✨ spells & ☕ by Viktoria</p>
         <div class="footer-links">
-            <a href="{% url 'home' %}">Home</a> |
+            <a href="{% url 'home' %}">Home</a> | <a href="{% url 'create_user' %}">Create Wizard</a> | <a href="{% url 'secret_potions' %}">Secret potions</a>
         </div>
     </footer>
 

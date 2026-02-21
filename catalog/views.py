@@ -2,16 +2,20 @@ from django.core.exceptions import PermissionDenied
 
 from django.db.models import QuerySet
 from django.http import HttpResponse, HttpRequest,HttpResponseBadRequest
+from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, UpdateView, DetailView, DeleteView
 
 from catalog.forms import SearchForm, GenreFilterForm, BooksForm, DeleteBookForm
 from catalog.models import Catalog
 
+class HomePageView(ListView):
+    model = Catalog
+    template_name = 'home.html'
 
 class SearchBooksView(ListView):
     model = Catalog
-    template_name = 'catalog/home.html'
+    template_name = 'catalog/search_book.html'
     context_object_name = 'books'
     paginate_by = 10
 
@@ -95,17 +99,11 @@ class BookEditView(UpdateView):
                        kwargs={'pk': self.object.pk})
 
 
-#todo
-# def book_delete(request: HttpRequest,pk)->HttpResponse:
-#     #only if admin
-#     return render(request, 'catalog/books_delete.html', context)
-
 
 class BookDeleteView(DeleteView):
     model = Catalog
-    # form_class = DeleteBookForm
     template_name = 'catalog/book_delete.html'
-    success_url = reverse_lazy('all_books')
+    success_url = reverse_lazy('home')
 
     #i rewrite dispatch so i can forbit for non admins to delete books
     def dispatch(self, request, *args, **kwargs):
@@ -118,8 +116,3 @@ class BookDeleteView(DeleteView):
         context["form"] = DeleteBookForm(instance=self.object)
         return context
 
-
-# def book_edit(request: HttpRequest,pk)->HttpResponse:
-#     #only if admin
-#     #add validations
-#     return render(request, 'catalog/books_edit.html', context)

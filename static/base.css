@@ -216,7 +216,6 @@ button:hover{
     border-color: #d4af37;
 }
 
-/* Magical decorative elements */
 .box-details::after {
     content: '✦';
     position: absolute;
