@@ -1,8 +1,7 @@
 from django.core.exceptions import PermissionDenied
 
 from django.db.models import QuerySet
-from django.http import HttpResponse, HttpRequest,HttpResponseBadRequest
-from django.shortcuts import render
+from django.http import HttpResponseBadRequest
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, UpdateView, DetailView, DeleteView
 

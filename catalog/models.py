@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
 
 # Create your models here.
@@ -30,7 +29,6 @@ class Catalog(models.Model):
         
     title = models.CharField(max_length=100)
     writer = models.CharField(max_length=100)
-    # status = models.TextField(choices=Status.choices, default=Status.UNREAD)
     genre = models.TextField(choices=Genre.choices, default=Genre.NONE)
     name_of_series = models.CharField(max_length=100, null=True, blank=True) #todo ?if to keep
     quantity = models.IntegerField(null=True, blank=True,default=1)
