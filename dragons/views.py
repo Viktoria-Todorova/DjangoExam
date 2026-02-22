@@ -1,6 +1,5 @@
 import random
 
-from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView
@@ -18,6 +17,7 @@ class DisplayDragonView(ListView):
 
 
 class RandomDragonView(View):
+
     def get(self, request):
         dragons= list(Dragon.objects.all())
 
@@ -29,13 +29,7 @@ class RandomDragonView(View):
         context = {'dragon':random_dragon}
         return render(request,'dragons/display-random-page.html',context)
 
-# def random_dragon(request: HttpRequest) -> HttpResponse:
-#     dragons = Dragon.objects.all()
-#     dragon_for_you = random.choice(dragons)
-#     context = {
-#         'dragon': dragon_for_you,
-#     }
-#     return render(request, 'dragons/display-random-page.html', context)
+
 
 # def raise_an_egg(request: HttpRequest) -> HttpResponse:
 #     #it needs 10 books readed, 3 magic potions created to create a dragon

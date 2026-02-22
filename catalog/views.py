@@ -6,6 +6,7 @@ from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, UpdateView, DetailView, DeleteView
 
 from catalog.forms import SearchForm, GenreFilterForm, BooksForm, DeleteBookForm
+from catalog.mixins import AdminRequiredMixin
 from catalog.models import Catalog
 
 class HomePageView(ListView):
@@ -83,15 +84,11 @@ class BookDetailView(DetailView):
 
 
 
-class BookEditView(UpdateView):
+class BookEditView(AdminRequiredMixin,UpdateView):
     model = Catalog
     form_class = BooksForm
     template_name = 'catalog/book_edit.html'
 
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_staff:
-            raise PermissionDenied
-        return super().dispatch(request, *args, **kwargs)
 
     def get_success_url(self) -> str:
         return reverse('book_detail',
@@ -99,16 +96,11 @@ class BookEditView(UpdateView):
 
 
 
-class BookDeleteView(DeleteView):
+class BookDeleteView(AdminRequiredMixin,DeleteView):
     model = Catalog
     template_name = 'catalog/book_delete.html'
     success_url = reverse_lazy('home')
 
-    #i rewrite dispatch so i can forbit for non admins to delete books
-    def dispatch(self, request, *args, **kwargs):
-        if not request.user.is_staff:
-            raise PermissionDenied
-        return super().dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

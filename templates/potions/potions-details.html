@@ -14,7 +14,9 @@
     <div class="potions-grid">
         {% for potion in potions %}
         <div class="box-details potion-card">
-            <span class="card-icon">🧪</span>
+            <span class="card-icon">
+                <img src="{% static 'images/potion.gif' %}" alt="Potion" class="icon-gif">
+            </span>
             <h3 class="card-title">{{ potion.potion }}</h3>
             <div class="card-ingredients">
                 <span class="ingredient herb">🌱 {{ potion.herb }}</span>

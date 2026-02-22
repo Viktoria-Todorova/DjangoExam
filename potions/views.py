@@ -56,9 +56,6 @@ class CreatePotionView(FormView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["total_potions"] = len(POTION_RECIPES)
-        context["result"] = getattr(self, "result", None)
-        context["potion_name"] = getattr(self, "potion_name", None)
         return context
 
     def form_valid(self, form):
@@ -69,21 +66,22 @@ class CreatePotionView(FormView):
         ingredients = (herb, liquid, item)
 
         if ingredients in POTION_RECIPES:
-            self.result = "success"
-            self.potion_name = POTION_RECIPES[ingredients]
+            potion_name = POTION_RECIPES[ingredients]
+            result = "success"
 
             Potion.objects.get_or_create(
-                name=self.potion_name,
+                name=potion_name,
                 magician=magician,
-                defaults={
-                    "description": f"Brewed with {herb}, {liquid} and {item}.",
-                }
+                defaults={"description": f"Brewed with {herb}, {liquid}, and {item}."}
             )
         else:
-            self.result = "fail"
-            self.potion_name = random.choice(FAIL_POTIONS)
+            potion_name = random.choice(FAIL_POTIONS)
+            result = "fail"
 
-        return self.render_to_response(self.get_context_data(form=form))
+        context = self.get_context_data(form=form)
+        context["result"] = result
+        context["potion_name"] = potion_name
+        return self.render_to_response(context)
 
 
 
