@@ -5,7 +5,12 @@
         <form method="post" enctype="multipart/form-data">
             {{ form }}
             {% csrf_token %}
-            <button class="edit-btn" type="submit">Edit</button>
+            {% if form.errors.magician %}
+                <a href="{% url 'grimoire_list' %}"><button type="button">Go Back</button></a>
+            {% else %}
+                <button class="edit-btn" type="submit">Edit</button>
+            {% endif %}
         </form>
+
     </div>
 {% endblock %}

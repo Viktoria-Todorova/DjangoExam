@@ -22,5 +22,5 @@ class FileSizeValidator:
 
 
     def __call__(self, value: UploadedFile)->None:
-        if value.size > self.file_size *1024*1024: #bytes *1023 => kbytes * 1024 ->mb
+        if value.size > self.file_size *1024*1024:
             raise ValidationError(self.message)

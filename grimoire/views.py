@@ -1,9 +1,10 @@
+from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
 
 from grimoire.forms import GrimoireForm, DeleteGrimoireForm
 from grimoire.models import Grimoire
-from users.models import User
+
 
 
 # Create your views here.
@@ -13,9 +14,6 @@ class GrimoireCreateView(CreateView):
     form_class = GrimoireForm
     success_url = reverse_lazy('grimoire_list')
 
-    # def form_valid(self, form):
-    #     form.instance.magician = User.objects.get(pk=self.request.user.pk)
-    #     return super().form_valid(form)
 
 class GrimoireListView(ListView):
     model = Grimoire
@@ -35,8 +33,14 @@ class GrimoireEditView(UpdateView):
     model = Grimoire
     form_class = GrimoireForm
     template_name = 'grimoire/grimoire_edit.html'
-
     success_url = reverse_lazy('grimoire_list')
+
+
+
+    def form_invalid(self, form):
+        if form.errors.get('magician'):
+            messages.error(self.request, "Not the owner!")
+        return super().form_invalid(form)
 
 class GrimoireDeleteView(DeleteView):
     model = Grimoire
