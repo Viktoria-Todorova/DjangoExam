@@ -19,9 +19,9 @@
             </span>
             <h3 class="card-title">{{ potion.potion }}</h3>
             <div class="card-ingredients">
-                <span class="ingredient herb">🌱 {{ potion.herb }}</span>
-                <span class="ingredient liquid">💧 {{ potion.liquid }}</span>
-                <span class="ingredient item">💎 {{ potion.items }}</span>
+                <span class="ingredient herb">🌱 {{ potion.actual_name.herb }}</span>
+                <span class="ingredient liquid">💧 {{ potion.actual_name.liquid }}</span>
+                <span class="ingredient item">💎 {{ potion.actual_name.items }}</span>
             </div>
         </div>
         {% empty %}

@@ -6,27 +6,27 @@ potions = [
     {"potion": "Potion of Healing", "herb": "mint", "liquid": "water", "items": "crystal"},
     {"potion": "Potion of Clarity", "herb": "sage", "liquid": "water", "items": "pearl"},
     {"potion": "Potion of Calm Mind", "herb": "chamomile", "liquid": "honey", "items": "dust"},
-    {"potion": "Potion of Cooling Skin", "herb": "aloe", "liquid": "dew", "items": "crystal"},
+    {"potion": "Potion of Cooling Skin", "herb": "aloe", "liquid": "water", "items": "ice_shard"},        # fixed
     {"potion": "Potion of Invisibility", "herb": "nightshade", "liquid": "oil", "items": "shadow_dust"},
     {"potion": "Potion of Radiance", "herb": "sunflower", "liquid": "alcohol", "items": "gold_flake"},
-    {"potion": "Potion of Water Breathing", "herb": "lotus", "liquid": "water", "items": "stone"},
+    {"potion": "Potion of Water Breathing", "herb": "lotus", "liquid": "water", "items": "moonstone"},    # fixed
     {"potion": "Potion of Fire Resistance", "herb": "ginger_root", "liquid": "fire_water", "items": "ash"},
-    {"potion": "Potion of Levitation", "herb": "blue_orchid", "liquid": "dew", "items": "butterfly_wing"},
+    {"potion": "Potion of Levitation", "herb": "blue_orchid", "liquid": "ether", "items": "butterfly_wing"},  # fixed
     {"potion": "Potion of Strength", "herb": "thorn_leaf", "liquid": "blood", "items": "iron"},
-    {"potion": "Potion of Rage", "herb": "mushroom", "liquid": "milk", "items": "bone"},
-    {"potion": "Potion of Frost Armor", "herb": "nettle", "liquid": "ice_water", "items": "silver"},
-    {"potion": "Potion of Flame Aura", "herb": "sage", "liquid": "alcohol", "items": "scale"},
-    {"potion": "Potion of Poison Touch", "herb": "nettle", "liquid": "oil", "items": "spider_silk"},
+    {"potion": "Potion of Rage", "herb": "wolf_fang", "liquid": "oil", "items": "bone_fragment"},         # fixed
+    {"potion": "Potion of Frost Armor", "herb": "frost_berry", "liquid": "ice_water", "items": "silver"}, # fixed
+    {"potion": "Potion of Flame Aura", "herb": "ember_leaf", "liquid": "alcohol", "items": "dragon_scale"}, # fixed
+    {"potion": "Potion of Poison Touch", "herb": "nettle", "liquid": "vinegar", "items": "spider_silk"},  # fixed
     {"potion": "Potion of Time Slow", "herb": "moonflower", "liquid": "dew", "items": "stardust"},
     {"potion": "Potion of Shadow Walk", "herb": "black_rose", "liquid": "ink", "items": "crow_feather"},
     {"potion": "Potion of Spirit Form", "herb": "ghost_mushroom", "liquid": "fog", "items": "spirit_essence"},
-    {"potion": "Potion of Purification", "herb": "chamomile", "liquid": "holy_water", "items": "opal"},
+    {"potion": "Potion of Purification", "herb": "crystal_rose", "liquid": "holy_water", "items": "opal"}, # fixed
     {"potion": "Potion of Memory Recall", "herb": "mandrake", "liquid": "elixir", "items": "ancient_coin"},
     {"potion": "Potion of Darkness", "herb": "void_root", "liquid": "tar", "items": "obsidian"},
     {"potion": "Potion of Life Drain", "herb": "blood_lily", "liquid": "blood", "items": "heart_fragment"},
-    {"potion": "Potion of Dragon Breath", "herb": "ginger_root", "liquid": "lava", "items": "ruby"},
-    {"potion": "Potion of Time Reversal", "herb": "moonflower", "liquid": "mercury", "items": "clock_gear"},
-    {"potion": "Potion of Ascension", "herb": "lotus", "liquid": "liquid_light", "items": "halo_fragment"},
+    {"potion": "Potion of Dragon Breath", "herb": "wyrm_scale", "liquid": "lava", "items": "ruby"},       # fixed
+    {"potion": "Potion of Time Reversal", "herb": "time_sand", "liquid": "mercury", "items": "clock_gear"}, # fixed
+    {"potion": "Potion of Ascension", "herb": "star_tear", "liquid": "liquid_light", "items": "halo_fragment"}, # fixed
 ]
 def populate_potions_model(apps, schema_editor):
     SecretPotions = apps.get_model("potions", "SecretPotions")

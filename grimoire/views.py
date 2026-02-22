@@ -14,6 +14,10 @@ class GrimoireCreateView(CreateView):
     form_class = GrimoireForm
     success_url = reverse_lazy('grimoire_list')
 
+    def form_valid(self, form):
+        # Assign the cleaned User instance to the magician field
+        form.instance.magician = form.cleaned_data['magician']
+        return super().form_valid(form)
 
 class GrimoireListView(ListView):
     model = Grimoire
