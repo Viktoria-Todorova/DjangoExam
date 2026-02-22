@@ -81,7 +81,7 @@ The project uses **DRF Spectacular** for Swagger documentation.
 ---
 
 
-#### Next Page: [Add Station (Tutorial)](./add_station_tutorial.md)
+#### Next Page: [Magic Library (Tutorial)](./Magic_library_tutorial.md)
 
 ---
 
@@ -103,3 +103,4 @@ The project uses **DRF Spectacular** for Swagger documentation.
 
 
 ---
+
