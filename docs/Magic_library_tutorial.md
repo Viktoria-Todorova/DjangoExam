@@ -32,11 +32,27 @@ Users can browse the book collection stored in the magic shelves.
 Available actions:
 - 🗂️ Filter books by genre  
 - ✅ Check book availability (based on quantity)  
-- 🔍 View book details  
+- 🔍 View book details
+
+  
+
+https://github.com/user-attachments/assets/0be1e95b-99ab-4887-88e2-0dc2d5f0f78d
+
+
+
+https://github.com/user-attachments/assets/566c1c07-5e83-4a21-97af-88eaf2f176ff
+
+
+
 
 Admin users can:
 - ✏️ Edit books  
 - 🗑️ Delete books  
+
+
+
+https://github.com/user-attachments/assets/9ab36961-b443-4524-95fc-10bb55c9c9fc
+
 
 ---
 
