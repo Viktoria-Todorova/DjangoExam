@@ -58,4 +58,4 @@ DjangoExam/
 
 ## 🪄 Setup Instructions
 
-See [Project SetupInstructions](https://github.com/Viktoria-Todorova/DjangoExam/blob/main/docs/project_setup.md)
+See [Project Setup Instructions](https://github.com/Viktoria-Todorova/DjangoExam/blob/main/docs/project_setup.md)
