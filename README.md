@@ -6,6 +6,8 @@ It represents a hidden library that contains magical books, grimoires created fr
 
 Each section of the library explores a different aspect of magic:
 
+[Tutorial Here](https://github.com/Viktoria-Todorova/DjangoExam/blob/main/docs/Magic_library_tutorial.md)
+
 - **Books** – records stored in the main catalog  
 - **Grimoires** – magical tomes formed from human souls and memories  
 - **Potions** – brewed potions with mystical effects  
