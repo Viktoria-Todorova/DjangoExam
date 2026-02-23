@@ -1,15 +1,21 @@
-# Project Setup Instructions
+# 🧙‍♂️ Project Setup Instructions
 
-## Prerequisites
+Welcome to your **Magic Library** project! Follow these steps to get your wizarding environment ready. ✨
+
+---
+
+## ⚡ Prerequisites
 
 To run this project, you will need:
 
-- Python 3.10+
-- [Poetry](https://python-poetry.org/docs/) for dependency management.
-- PostgreSQL for the database.
-- pip
+- Python 3.13 🐍  
+- PostgreSQL for the database 🗄️
+- psycopg2-binary
+- pip 💻  
 
-## Setup Guide
+---
+
+## 🪄 Setup Guide
 
 ### Step 1: Clone the Repository
 
@@ -50,15 +56,15 @@ Ensure `PostgreSQL` is running and set up your database using the credentials pr
 
 Next, run the following commands to apply database migrations:
 ```sh
-poetry run python manage.py migrate
+python manage.py migrate
 ```
 
 
 ### Step 5: Create a Superuser
-To access the admin panel or Swagger documentation, create a superuser account:
+To access the admin panel or to do some editing/ deleting , create a superuser account:
 
 ```sh
-  poetry run python manage.py createsuperuser
+  python manage.py createsuperuser
 ```
 
 Follow the prompts to set up the superuser credentials.
@@ -67,7 +73,7 @@ Follow the prompts to set up the superuser credentials.
 Run the server with the following command:
 
 ```shell
-poetry run python manage.py runserver
+python manage.py runserver
 ```
 
 By default, the server runs on http://127.0.0.1:8000/.
@@ -103,4 +109,5 @@ The project uses **DRF Spectacular** for Swagger documentation.
 
 
 ---
+
 
