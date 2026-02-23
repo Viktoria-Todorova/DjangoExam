@@ -1,20 +1,26 @@
-# 🧙‍♂️ Magic Library
+<h1 align="center">🧙‍♂️ Magic Library 🧙‍♂️</h1>
+<p align="center"><em>A fantasy-themed web application</em></p>
 
-Magic Library is a fantasy-themed web application where users can explore books 📚, create potions 🧪, meet dragons 🐉, and publish grimoires 📜.
+<img width="1500" height="862" alt="home" src="https://github.com/user-attachments/assets/17790205-334b-405c-8fa6-37bc0337ca62" />
+
+
+<p align="center"><em>Enter a mystical world where enchanted books 📚 reveal their secrets, potions 🧪 are brewed by wit and wisdom, dragons 🐉 await their chosen companions, and ancient grimoires 📜 are brought to life.</em></p>
 
 ---
+<h2 align="center">✨ Features </h2>
 
-## ✨ Features
 
 
 https://github.com/user-attachments/assets/9c7d8ea4-3c77-4e57-a484-11db2b583d4d
 
 
 ### 🪄 1. User Registration (Wizard Creation)
-Users register by choosing a username.  
-The username is used to:
-- 🧪 Create potions  
-- 📖 Rent books  
+Wizards register by choosing a username.  
+*(This is a small improvised login system based on current knowledge.)*  
+
+The chosen username is used to:
+- 🧪 Create magical potions  
+- 📖 Rent enchanted books  
 - 📝 Submit and edit grimoires  
 
 
@@ -27,7 +33,7 @@ https://github.com/user-attachments/assets/5cc4464a-bb65-49ff-a240-3d787c7233c1
 ---
 
 ### 📚 2. Book Collection
-Users can browse the book collection stored in the magic shelves.
+Wizards can browse the book collection stored in the magic shelves.
 
 Available actions:
 - 🗂️ Filter books by genre  
@@ -45,7 +51,7 @@ https://github.com/user-attachments/assets/566c1c07-5e83-4a21-97af-88eaf2f176ff
 
 
 
-Admin users can:
+Admin Wizards can:
 - ✏️ Edit books  
 - 🗑️ Delete books  
 
@@ -57,7 +63,7 @@ https://github.com/user-attachments/assets/9ab36961-b443-4524-95fc-10bb55c9c9fc
 ---
 
 ### 🧬 3. Potion Brewing
-Users can create potions by guessing ingredient combinations.
+Wizards can create potions by guessing ingredient combinations.
 
 If the correct combination is guessed:
 - 🔓 The full potion recipe is revealed  
@@ -73,7 +79,7 @@ https://github.com/user-attachments/assets/7685e1e5-124b-4fb7-a882-522a5832ebb0
 ---
 
 ### 🐉 4. Dragons
-Users can:
+Wizards can:
 - 🤝 Match with one dragon from the available dragons  
 
 
@@ -83,7 +89,7 @@ https://github.com/user-attachments/assets/0cf3f563-8239-4727-9fd2-5c803ff13a00
 ---
 
 ### 📜 5. Grimoires
-Users can read published grimoires.
+Wizards can read published grimoires.
 
 They can also:
 - ✍️ Publish a new grimoire  
