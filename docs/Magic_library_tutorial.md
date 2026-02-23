@@ -88,6 +88,7 @@ https://github.com/user-attachments/assets/0cf3f563-8239-4727-9fd2-5c803ff13a00
 
 ---
 
+
 ### 📜 5. Grimoires
 Wizards can read published grimoires.
 
@@ -102,3 +103,19 @@ https://github.com/user-attachments/assets/e21db139-cbbb-4caf-be63-ddd14c42dab9
 
 
 ---
+<h2 align="center">✨ Future Magical Improvements ✨</h2>
+
+- 🔐 Add a real authentication and login system
+
+
+---
+<h2 align="center"><em style="color: magenta;">Disclaimer</em></h2>
+
+- The background image is not owned by me — it was only edited with AI to match my vibe.  
+- The colors and the overall magical design are my own implementation, though AI helped improve the CSS.  
+- All the code is mine. I know there are some minor things that could be improved, but I need more knowledge to refine them.  
+- I hope anyone who explores my Magic Library has as much fun as I had while creating it!  
+
+Creating this “kinda working” web app was a whole new experience for me. I gained new knowledge, saw what was missing, and managed to improve it along the way. There were a lot of bugs, but each one taught me something new.  
+
+<p align="center"><em>🐛 “A bug in the code is just a feature the compiler hasn’t revealed yet.”</em></p>>
