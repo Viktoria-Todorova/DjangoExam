@@ -40,7 +40,6 @@ class GrimoireEditView(UpdateView):
     success_url = reverse_lazy('grimoire_list')
 
 
-
     def form_invalid(self, form):
         if form.errors.get('magician'):
             messages.error(self.request, "Not the owner!")
