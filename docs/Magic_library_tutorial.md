@@ -64,11 +64,21 @@ If the correct combination is guessed:
 
 There is also a hidden secret key in the footer related to potion brewing 🗝️.
 
+
+
+https://github.com/user-attachments/assets/7685e1e5-124b-4fb7-a882-522a5832ebb0
+
+
+
 ---
 
 ### 🐉 4. Dragons
 Users can:
 - 🤝 Match with one dragon from the available dragons  
+
+
+https://github.com/user-attachments/assets/0cf3f563-8239-4727-9fd2-5c803ff13a00
+
 
 ---
 
@@ -78,5 +88,11 @@ Users can read published grimoires.
 They can also:
 - ✍️ Publish a new grimoire  
 - 🛡️ Edit a grimoire only if it belongs to them  
+
+
+https://github.com/user-attachments/assets/e21db139-cbbb-4caf-be63-ddd14c42dab9
+
+
+
 
 ---
