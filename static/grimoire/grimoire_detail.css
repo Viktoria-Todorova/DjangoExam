@@ -5,7 +5,7 @@
 }
 
 .grimoire-card .box-details {
-    max-width: 500px;   /* override the 350px from base.css */
+    max-width: 500px;
     width: 100%;
     text-align: left;
     align-items: flex-start;

@@ -8,9 +8,6 @@ from .forms import CreatePotionForm
 from .models import Potion, SecretPotions
 
 
-
-
-
 class CreatePotionView(FormView):
     template_name = "potions/create-potions.html"
     form_class = CreatePotionForm
@@ -45,16 +42,6 @@ class CreatePotionView(FormView):
         context["result"] = result
         context["potion_name"] = potion_name
         return self.render_to_response(context)
-
-
-
-
-
-# class SecretPotionsView(ListView):
-#     model = SecretPotions
-#     template_name = 'potions/potions-details.html'
-#     context_object_name = "potions"
-#     paginate_by = 8
 
 
 class SecretPotionsView(ListView):
