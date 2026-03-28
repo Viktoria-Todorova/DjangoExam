@@ -9,4 +9,8 @@
         </form>
     </div>
 
+    <form method="post" action="{% url 'users:logout-cbv' %}">
+    {% csrf_token %}
+    <button type="submit">LOGOUT TEST</button>
+</form>
 {% endblock %}

@@ -25,10 +25,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('catalog.urls')),
     path('rent/',include('circulation.urls')),
-    path('register/',include('users.urls')),
     path('dragons/',include('dragons.urls')),
     path('grimoire/',include('grimoire.urls')),
     path('potion/',include('potions.urls')),
+    path('user/',include('users.urls')),
     path('test-404/', TemplateView.as_view(template_name='404.html')),
     path('test-403/', TemplateView.as_view(template_name='403.html')),
 ]
