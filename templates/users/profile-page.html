@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="box-details">
-    <h1>Your Profile</h1>
+    <h1>⚗️ Your Profile</h1>
 
     {% if messages %}
         {% for message in messages %}
@@ -10,10 +10,52 @@
         {% endfor %}
     {% endif %}
 
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
-    </form>
+    <p><strong>Username:</strong> {{ request.user.username }}</p>
+    <p><strong>First Name:</strong> {{ request.user.first_name }}</p>
+    <p><strong>Last Name:</strong> {{ request.user.last_name }}</p>
+    <p><strong>Email:</strong> {{ request.user.email }}</p>
+
+    <a href="{% url 'users:edit-profile' %}"><button>✏️ Edit Profile</button></a>
+</div>
+
+<div class="box-details">
+    <h2>📚 Currently Rented Books</h2>
+    {% if currently_rented %}
+        {% for borrow in currently_rented %}
+            <p>{{ borrow.book.title }} — due {{ borrow.due_date|date:"d M Y" }}
+                {% if borrow.due_date < now %}
+                    <span style="color: red;">⚠ Overdue!</span>
+                {% endif %}
+            </p>
+            <form method="post" action="{% url 'return_book' borrow.id %}">
+                {% csrf_token %}
+                <button type="submit">📖 Return Book</button>
+            </form>
+        {% endfor %}
+    {% else %}
+        <p>No books currently rented.</p>
+    {% endif %}
+</div>
+
+<div class="box-details">
+    <h2>📖 Returned Books History</h2>
+    {% if returned_books %}
+        {% for borrow in returned_books %}
+            <p>{{ borrow.book.title }} — returned {{ borrow.return_date|date:"d M Y" }}</p>
+        {% endfor %}
+    {% else %}
+        <p>No books returned yet.</p>
+    {% endif %}
+</div>
+
+<div class="box-details">
+    <h2>🐉 Your Dragon</h2>
+    {% if dragon %}
+        <p><strong>{{ dragon.name }}</strong></p>
+        <p>{{ dragon.description }}</p>
+        <img src="{{ dragon.photo }}" alt="{{ dragon.name }}" style="width: 100px;">
+    {% else %}
+        <p>You haven't matched with a dragon yet.</p>
+    {% endif %}
 </div>
 {% endblock %}

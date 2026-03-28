@@ -1,12 +1,16 @@
+
 from django.contrib import messages
 from django.contrib.auth import login, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
+from django.utils import timezone
 from django.views import View
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, TemplateView
 
+from circulation.models import Borrowed
+from dragons.models import Dragon
 from users.forms import UserForm, ProfileEditForm
 
 # Create your views here.
@@ -50,10 +54,25 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
 
-class ProfileView(LoginRequiredMixin, UpdateView):
+class ProfileView(LoginRequiredMixin, TemplateView):
+    template_name = 'users/profile-page.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        user = self.request.user
+
+        borrowed = Borrowed.objects.filter(magician=user)
+        context['currently_rented'] = borrowed.filter(return_date__isnull=True)
+        context['returned_books'] = borrowed.filter(return_date__isnull=False)
+        context['dragon'] = Dragon.objects.filter(rider=user).first()
+        context['now'] = timezone.now()
+        return context
+
+
+class ProfileEditView(LoginRequiredMixin, UpdateView):
     model = UserModel
     form_class = ProfileEditForm
-    template_name = 'users/profile-page.html'
+    template_name = 'users/edit-profile.html'
     success_url = reverse_lazy('users:profile')
 
     def get_object(self):
