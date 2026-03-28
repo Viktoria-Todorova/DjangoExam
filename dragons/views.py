@@ -1,5 +1,6 @@
 import random
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView
@@ -16,7 +17,7 @@ class DisplayDragonView(ListView):
     paginate_by = 3
 
 
-class RandomDragonView(View):
+class RandomDragonView(LoginRequiredMixin,View):
 
     def get(self, request):
         dragons= list(Dragon.objects.all())

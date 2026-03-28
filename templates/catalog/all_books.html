@@ -13,6 +13,9 @@
             </form>
 
             <a href="{% url 'search_books' %}"><button>Rent a Magic Tome!</button></a>
+            {% if request.user.is_staff %}
+                <a href="{% url 'book_create' %}"><button>📚 Add New Book</button></a>
+            {% endif %}
         </div>
 
 

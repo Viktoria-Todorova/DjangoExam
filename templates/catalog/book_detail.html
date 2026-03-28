@@ -12,13 +12,17 @@
         </div>
 
         <div class="buttons-order">
-            <a href="{% url 'book_edit' book.id %}">
-                <button>Edit</button>
-            </a>
+             {% if request.user.is_staff %}
+                <a href="{% url 'book_edit' book.id %}">
+                    <button>Edit</button>
+                </a>
+                 <a href="{% url 'book_delete' book.id %}">
+                    <button>Delete</button>
+                </a>
+            {% endif %}
 
-            <a href="{% url 'book_delete' book.id %}">
-                <button>Delete</button>
-            </a>
+
+
 
         </div>
 

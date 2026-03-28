@@ -1,7 +1,7 @@
 from django.db.models import QuerySet
 from django.http import HttpResponseBadRequest
 from django.urls import reverse, reverse_lazy
-from django.views.generic import ListView, UpdateView, DetailView, DeleteView
+from django.views.generic import ListView, UpdateView, DetailView, DeleteView, CreateView
 
 from catalog.forms import SearchForm, GenreFilterForm, BooksForm, DeleteBookForm
 from catalog.mixins import AdminRequiredMixin
@@ -79,7 +79,11 @@ class BookDetailView(DetailView):
     template_name = 'catalog/book_detail.html'
     context_object_name = 'book'
 
-
+class BookCreateView(AdminRequiredMixin,CreateView):
+    model = Catalog
+    template_name = 'catalog/book_create.html'
+    fields = '__all__'
+    success_url = reverse_lazy('all_books') #todo
 
 
 class BookEditView(AdminRequiredMixin,UpdateView):

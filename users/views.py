@@ -2,8 +2,9 @@ from django.contrib import messages
 from django.contrib.auth import login, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import CreateView, UpdateView
 
 from users.forms import UserForm, ProfileEditForm
@@ -66,3 +67,9 @@ class ProfileView(LoginRequiredMixin, UpdateView):
         user.save()
         messages.success(self.request, '✨ Your profile has been updated successfully!')
         return HttpResponseRedirect(self.get_success_url())
+
+class CheckUsernameView(View):
+    def get(self, request):
+        username = request.GET.get('username', '')
+        taken = UserModel.objects.filter(username=username).exists()
+        return JsonResponse({'taken': taken})

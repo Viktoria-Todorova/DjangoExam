@@ -1,5 +1,6 @@
 import random
 
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import FormView, ListView
 
@@ -8,7 +9,7 @@ from .forms import CreatePotionForm
 from .models import Potion, SecretPotions
 
 
-class CreatePotionView(FormView):
+class CreatePotionView(LoginRequiredMixin,FormView):
     template_name = "potions/create-potions.html"
     form_class = CreatePotionForm
     success_url = reverse_lazy('create_potion')

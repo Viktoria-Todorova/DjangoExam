@@ -4,13 +4,67 @@
     <div class="box-details">
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            
+            {% for field in form %}
+                <div class="form-group">
+                    {% if field.name == 'username' %}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        <small class="field-help">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li id="req-username-length">Minimum 3 characters</li>
+                                <li id="req-username-format">Only letters, numbers, and underscores allowed</li>
+                                <li id="req-username-unique">Must be unique</li>
+                            </ul>
+                        </small>
+
+                    {% elif field.name == 'password' %}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        <small class="field-help">
+                            <strong>Requirements:</strong>
+                            <ul>
+                                <li id="req-length">Minimum 8 characters</li>
+                                <li id="req-upper">At least one uppercase letter</li>
+                                <li id="req-lower">At least one lowercase letter</li>
+                                <li id="req-digit">At least one digit</li>
+                                <li id="req-special">At least one special character (!@#$%^&*...)</li>
+                            </ul>
+                        </small>
+
+                    {% elif field.name == 'email' %}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        <small class="field-help">
+                            <strong>Allowed domains:</strong> abv.bg | gmail.com | yahoo.com
+                        </small>
+
+                    {% elif field.name == 'phone_number' %}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        <small class="field-help">Must start with 08 and be 10 digits long</small>
+
+                    {% else %}
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                    {% endif %}
+
+                    {% if field.errors %}
+                        <div class="field-errors">
+                            {% for error in field.errors %}
+                                <p class="error-message">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+            
             <button type="submit">Create</button>
         </form>
     </div>
+{% endblock %}
 
-    <form method="post" action="{% url 'users:logout-cbv' %}">
-    {% csrf_token %}
-    <button type="submit">LOGOUT TEST</button>
-</form>
+{% block js %}
+    <script src="{% static 'js/validation.js' %}"></script>
 {% endblock %}

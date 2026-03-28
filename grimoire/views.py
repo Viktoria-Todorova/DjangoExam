@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, UpdateView, ListView, DetailView, DeleteView
 
@@ -9,7 +10,7 @@ from grimoire.models import Grimoire
 
 # Create your views here.
 
-class GrimoireCreateView(CreateView):
+class GrimoireCreateView(LoginRequiredMixin,CreateView):
     model = Grimoire
     form_class = GrimoireForm
     success_url = reverse_lazy('grimoire_list')
@@ -32,8 +33,8 @@ class GrimoireDetailView(DetailView):
     context_object_name = 'grimoire'
 
 
-
-class GrimoireEditView(UpdateView):
+#TODO only the user who created it or the admin
+class GrimoireEditView(LoginRequiredMixin,UpdateView):
     model = Grimoire
     form_class = GrimoireForm
     template_name = 'grimoire/grimoire_edit.html'
@@ -45,7 +46,8 @@ class GrimoireEditView(UpdateView):
             messages.error(self.request, "Not the owner!")
         return super().form_invalid(form)
 
-class GrimoireDeleteView(DeleteView):
+#TODO only the user who created it or the admin
+class GrimoireDeleteView(LoginRequiredMixin,DeleteView):
     model = Grimoire
     template_name = 'grimoire/grimoire_delete.html'
     success_url = reverse_lazy('grimoire_list')

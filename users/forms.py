@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth import get_user_model
+from django.contrib.auth.password_validation import validate_password
 
 from users.models import User
 
@@ -42,6 +43,11 @@ class UserForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         for field in self.fields.values():
             field.help_text = ''
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        validate_password(password)
+        return password
 # class UserForm(forms.ModelForm):
 #     class Meta:
 #         model = User
@@ -81,4 +87,10 @@ class ProfileEditForm(forms.ModelForm):
         if password and password != confirm_password:
             raise forms.ValidationError("Passwords do not match.")
         return cleaned_data
+
+    def clean_password(self):
+        password = self.cleaned_data.get('password')
+        if password:
+            validate_password(password)
+        return password
 

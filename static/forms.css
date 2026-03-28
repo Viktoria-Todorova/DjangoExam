@@ -86,3 +86,98 @@
         0 0 20px rgba(255, 0, 0, 0.6),
         0 0 40px rgba(255, 0, 0, 0.3);
 }
+
+/* Form group layout */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+
+/* Required field star */
+.required-star {
+    color: #ff6b6b;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-left: 0.2em;
+}
+
+/* Field help text - hidden by default */
+.field-help {
+    color: #d4af37;
+    font-size: 0.85em;
+    padding: 0.5em;
+    background: rgba(139, 105, 20, 0.2);
+    border-left: 3px solid #d4af37;
+    border-radius: 4px;
+    line-height: 1.4;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.3s ease;
+    margin: 0;
+}
+
+/* Show help text on input focus */
+.form-group input:focus ~ .field-help {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 0.4em;
+}
+
+/* Show help text on hover */
+.form-group:hover .field-help {
+    max-height: 200px;
+    opacity: 1;
+    margin-top: 0.4em;
+}
+
+.field-help li {
+    margin: 0.2em 0;
+    color: #f4e4c1;
+    transition: color 0.3s ease;
+}
+
+.field-help strong {
+    color: #ffd700;
+}
+
+.field-help ul {
+    margin: 0.3em 0 0 1.2em;
+    padding: 0;
+    list-style: none;
+}
+
+/* Green checkmark when requirement is met */
+#req-length,
+#req-upper,
+#req-lower,
+#req-digit,
+#req-special,
+#req-username-length,
+#req-username-format,
+#req-username-unique {
+    transition: color 0.3s ease;
+}
+
+#req-length:before,
+#req-upper:before,
+#req-lower:before,
+#req-digit:before,
+#req-special:before,
+#req-username-length:before,
+#req-username-format:before,
+#req-username-unique:before {
+    content: "✓ ";
+    margin-right: 0.3em;
+}
+
+.error-message {
+    color: #ffb3b3;
+    font-size: 0.9em;
+    margin: 0;
+    padding: 0.3em 0.5em;
+    background: rgba(255, 0, 0, 0.1);
+    border-left: 3px solid #ff6b6b;
+    border-radius: 3px;
+}

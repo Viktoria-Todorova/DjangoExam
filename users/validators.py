@@ -40,3 +40,22 @@ class UsernameValidator:
     def __call__(self, value):
         if not re.match(self.regex, value):
             raise ValidationError(self.invalid_message)
+
+class PasswordValidator:
+    @staticmethod
+    def validate(password, user=None):
+        if not re.search(r'[A-Z]', password):
+            raise ValidationError("Password must contain at least one uppercase letter.")
+
+        if not re.search(r'[a-z]', password):
+            raise ValidationError("Password must contain at least one lowercase letter.")
+
+        if not re.search(r'[0-9]', password):
+            raise ValidationError("Password must contain at least one digit.")
+
+        if not re.search(r'[!@#$%^&*(),.?":{}|<>]', password):
+            raise ValidationError("Password must contain at least one special character.")
+
+    @staticmethod
+    def get_help_text():
+        return "Password must contain uppercase, lowercase, digit and special character."
