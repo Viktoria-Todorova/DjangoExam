@@ -1,0 +1,23 @@
+.register-book {
+    display: flex;
+    gap: 4em;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 2em;
+}
+
+.book-box {
+    flex: 0 1 300px;
+    min-width: 280px;
+    width: 95%;
+    max-width: 500px;
+    padding: 2em;
+}
+
+.book-box:hover {
+    color: #49d3ba;
+}
+.book-box:hover h3{
+    color: rgba(253, 2, 49, 0.86);
+}
