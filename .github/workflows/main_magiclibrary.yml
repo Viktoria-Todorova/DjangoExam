@@ -63,4 +63,4 @@ jobs:
         with:
           app-name: 'MagicLibrary'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_215396655DA14DB4AF33EE5CFD9CECB8 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_663489CD9BF34ED288C72E85EFBBE6DE }}
