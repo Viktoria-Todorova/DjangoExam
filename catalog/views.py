@@ -7,6 +7,15 @@ from catalog.forms import SearchForm, GenreFilterForm, BooksForm, DeleteBookForm
 from catalog.mixins import AdminRequiredMixin
 from catalog.models import Catalog
 
+from rest_framework import generics, filters
+from .serializers import CatalogSerializer
+
+class CatalogSearchAPIView(generics.ListAPIView):
+    queryset = Catalog.objects.all()
+    serializer_class = CatalogSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['title', 'writer']
+
 class HomePageView(ListView):
     model = Catalog
     template_name = 'home.html'

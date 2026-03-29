@@ -10,14 +10,15 @@ from grimoire.models import Grimoire
 
 # Create your views here.
 
-class GrimoireCreateView(LoginRequiredMixin,CreateView):
+from django.core.exceptions import PermissionDenied
+
+class GrimoireCreateView(LoginRequiredMixin, CreateView):
     model = Grimoire
     form_class = GrimoireForm
     success_url = reverse_lazy('grimoire_list')
 
     def form_valid(self, form):
-        # Assign the cleaned User instance to the magician field
-        form.instance.magician = form.cleaned_data['magician']
+        form.instance.magician = self.request.user
         return super().form_valid(form)
 
 class GrimoireListView(ListView):
@@ -33,25 +34,31 @@ class GrimoireDetailView(DetailView):
     context_object_name = 'grimoire'
 
 
-#TODO only the user who created it or the admin
-class GrimoireEditView(LoginRequiredMixin,UpdateView):
+class GrimoireEditView(LoginRequiredMixin, UpdateView):
     model = Grimoire
     form_class = GrimoireForm
     template_name = 'grimoire/grimoire_edit.html'
     success_url = reverse_lazy('grimoire_list')
 
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.magician != self.request.user and not self.request.user.is_staff:
+            raise PermissionDenied("You are not the owner of this grimoire entry!")
+        return obj
 
-    def form_invalid(self, form):
-        if form.errors.get('magician'):
-            messages.error(self.request, "Not the owner!")
-        return super().form_invalid(form)
 
-#TODO only the user who created it or the admin
-class GrimoireDeleteView(LoginRequiredMixin,DeleteView):
+class GrimoireDeleteView(LoginRequiredMixin, DeleteView):
     model = Grimoire
     template_name = 'grimoire/grimoire_delete.html'
     success_url = reverse_lazy('grimoire_list')
+
+    def get_object(self, queryset=None):
+        obj = super().get_object(queryset)
+        if obj.magician != self.request.user and not self.request.user.is_staff:
+            raise PermissionDenied("You are not the owner of this grimoire entry!")
+        return obj
+
     def get_context_data(self, **kwargs):
-        context =super().get_context_data(**kwargs)
-        context['form']=DeleteGrimoireForm(instance=self.object)
+        context = super().get_context_data(**kwargs)
+        context['form'] = DeleteGrimoireForm(instance=self.object)
         return context

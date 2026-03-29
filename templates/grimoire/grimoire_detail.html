@@ -15,8 +15,10 @@
         <p>{{ grimoire.body }}</p>
         <div class="buttons-order">
             <a href="{% url 'grimoire_list' %}"><button>← Back to Shelf</button></a>
-             <a href="{% url 'grimoire-edit' grimoire.pk %}"><button>Edit</button></a>
-            <a href="{% url 'grimoire-delete' grimoire.pk%}"><button>Delete</button></a>
+            {% if request.user == grimoire.magician or request.user.is_staff %}
+                <a href="{% url 'grimoire-edit' grimoire.pk %}"><button>Edit</button></a>
+                <a href="{% url 'grimoire-delete' grimoire.pk%}"><button>Delete</button></a>
+            {% endif %}
         </div>
 
     </div>

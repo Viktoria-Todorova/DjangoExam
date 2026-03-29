@@ -5,31 +5,36 @@
 
 {% block content %}
     <h1>“Whisper a title…”</h1>
-    <form method="get" class="search-bar">
+    <form method="get" class="search-bar" id="search-form">
         {% csrf_token %}
-        {{ form.book_name }}
+        <input type="text" name="book_name" id="book-search-input" placeholder="Whisper a title..." autocomplete="off" value="{{ searched_book }}">
         <button class="search-btn" type="submit">Search</button>
     </form>
 
+    <div id="search-results-container">
+        {% if books %}
+            <h1 class ="results-heading" id="results-title">Search Results</h1>
+            <div class="results-container" id="results-list">
+                {% for book in books %}
+                    <div class="box-details">
+                        <h3>{{ book.title }}</h3>
+                        <p>Author: {{ book.writer }}</p>
+                        {% if book.quantity > 0 %}
+                            <a href="{% url 'validate_rent_a_book' book.id %}">
+                                <button type="button">Rent</button>
+                            </a>
+                         {% else %}
+                            <p class="unavailable">Currently not available</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+            {% include 'pagination.html' %}
+        {% endif %}
+    </div>
 
-    {% if books %}
-        <h1 class ="results-heading">Search Results</h1>
-        <div class="results-container">
-            {% for book in books %}
-                <div class="box-details">
-                    <h3>{{ book.title }}</h3>
-                    <p>Author: {{ book.writer }}</p>
-                    {% if book.quantity > 0 %}
-                        <a href="{% url 'validate_rent_a_book' book.id %}">
-                            <button type="button">Rent</button>
-                        </a>
-                     {% else %}
-                        <p class="unavailable">Currently not available</p>
-                    {% endif %}
-                </div>
-            {% endfor %}
-        </div>
-        {% include 'pagination.html' %}
-    {% endif %}
+{% endblock %}
 
+{% block js %}
+    <script src="{% static 'js/book_search.js' %}"></script>
 {% endblock %}

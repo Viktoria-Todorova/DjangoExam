@@ -57,7 +57,7 @@
 </div>
 
 <div class="box-details">
-    <h2>📖 Returned Books History</h2>
+    <h2>📖 Read Books History</h2>
     {% if returned_books %}
         {% for borrow in returned_books %}
             <p>{{ borrow.book.title }} — returned {{ borrow.return_date|date:"d M Y" }}</p>
@@ -93,6 +93,14 @@
 
 <div class="box-details">
     <h2>Your Potions</h2>
+    <div class="potion-stats" style="margin-bottom: 1rem; color: #ffd700; font-weight: bold;">
+        <p>Discovered: {{ potions_discovered }} / {{ potions_total }}</p>
+        {% if potions_remaining > 0 %}
+            <p style="font-size: 0.9em; opacity: 0.8;"> ✨ {{ potions_remaining }} more to find your dragon! ✨</p>
+        {% else %}
+            <p style="color: #49d3ba;"> 🏆 Master Alchemist! You can now match with a dragon! 🏆</p>
+        {% endif %}
+    </div>
     {% if potions %}
         {% for potion in potions %}
             <p>{{ potion.name }} : {{ potion.description }} </p>

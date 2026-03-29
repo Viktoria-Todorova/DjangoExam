@@ -57,6 +57,8 @@ class CustomLoginView(LoginView):
 
 from django.core.paginator import Paginator
 
+from potions.choices import POTION_RECIPES
+
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile-page.html'
 
@@ -65,10 +67,10 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         user = self.request.user
 
         borrowed = Borrowed.objects.filter(magician=user)
-        
+
         # Pagination for Currently Rented
         currently_rented_list = borrowed.filter(return_date__isnull=True).order_by('-due_date')
-        rented_paginator = Paginator(currently_rented_list, 3) # 3 per page
+        rented_paginator = Paginator(currently_rented_list, 3)
         rented_page = self.request.GET.get('rented_page')
         context['currently_rented'] = rented_paginator.get_page(rented_page)
 
@@ -79,10 +81,18 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         context['returned_books'] = history_paginator.get_page(history_page)
 
         # Pagination for Potions
-        potions_list = Potion.objects.filter(magician=user).order_by('-created_on')
-        potions_paginator = Paginator(potions_list, 2)
+        potions_qs = Potion.objects.filter(magician=user)
+        potions_list = potions_qs.order_by('-created_on')
+        potions_paginator = Paginator(potions_list, 5)
         potions_page = self.request.GET.get('potions_page')
         context['potions'] = potions_paginator.get_page(potions_page)
+
+        # Potion Discovery Stats
+        total_recipes = len(set(POTION_RECIPES.values()))
+        discovered_count = potions_qs.values('name').distinct().count()
+        context['potions_discovered'] = discovered_count
+        context['potions_total'] = total_recipes
+        context['potions_remaining'] = max(0, total_recipes - discovered_count)
 
         context['dragon'] = Dragon.objects.filter(rider=user).first()
         context['now'] = timezone.now()

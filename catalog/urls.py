@@ -1,12 +1,13 @@
 from django.urls import path, include
 
-from catalog.views import SearchBooksView, AllBooksView, BookEditView, BookDetailView, BookDeleteView, HomePageView
+from catalog.views import SearchBooksView, AllBooksView, BookEditView, BookDetailView, BookDeleteView, HomePageView, CatalogSearchAPIView
 
 # app_name = 'catalog'
 urlpatterns = [
     path('',HomePageView.as_view(),name='home'),
     path('all_books/',AllBooksView.as_view(),name='all_books'),
     path('search_books/',SearchBooksView.as_view(),name='search_books'),
+    path('api/search/', CatalogSearchAPIView.as_view(), name='api_search_books'),
     path('<int:pk>/',include([
         path('',BookDetailView.as_view(),name='book_detail'),
         path('edit/',BookEditView.as_view(),name='book_edit'),
