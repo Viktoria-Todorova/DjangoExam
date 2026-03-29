@@ -1,6 +1,6 @@
 .order {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 1em;
     padding: 2em;
     align-items: center;
@@ -18,7 +18,8 @@
 .about-me {
     max-width: none;
     margin: 0;
-    flex: 0.5;           /* grows with text */
+    flex: 0 0 auto;  /* don't grow, don't shrink, size to content */
+    width: fit-content;
 }
 
 .box-details img {
