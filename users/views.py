@@ -70,7 +70,7 @@ class ProfileView(LoginRequiredMixin, TemplateView):
 
         # Pagination for Currently Rented
         currently_rented_list = borrowed.filter(return_date__isnull=True).order_by('-due_date')
-        rented_paginator = Paginator(currently_rented_list, 3)
+        rented_paginator = Paginator(currently_rented_list, 2)
         rented_page = self.request.GET.get('rented_page')
         context['currently_rented'] = rented_paginator.get_page(rented_page)
 
@@ -83,7 +83,7 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         # Pagination for Potions
         potions_qs = Potion.objects.filter(magician=user)
         potions_list = potions_qs.order_by('-created_on')
-        potions_paginator = Paginator(potions_list, 5)
+        potions_paginator = Paginator(potions_list, 2)
         potions_page = self.request.GET.get('potions_page')
         context['potions'] = potions_paginator.get_page(potions_page)
 

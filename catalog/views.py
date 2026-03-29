@@ -7,14 +7,18 @@ from catalog.forms import SearchForm, GenreFilterForm, BooksForm, DeleteBookForm
 from catalog.mixins import AdminRequiredMixin
 from catalog.models import Catalog
 
-from rest_framework import generics, filters
+from rest_framework import generics, filters, pagination
 from .serializers import CatalogSerializer
+
+class CatalogSearchPagination(pagination.PageNumberPagination):
+    page_size = 8
 
 class CatalogSearchAPIView(generics.ListAPIView):
     queryset = Catalog.objects.all()
     serializer_class = CatalogSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['title', 'writer']
+    pagination_class = CatalogSearchPagination
 
 class HomePageView(ListView):
     model = Catalog

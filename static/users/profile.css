@@ -18,6 +18,8 @@
     justify-content: flex-start !important;
     text-align: center !important;
     align-items: center !important;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Make the first box (Profile Info) span across if there's space */
@@ -34,14 +36,25 @@
     width: 100%;
     color: #ffd700;
 }
-
 /* Adjust dragon image */
-.box-details img {
-    border-radius: 8px;
-    border: 2px solid #d4af37;
-    margin-top: 0.5rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+.dragon-profile-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 12px;
+    border: 3px solid #d4af37;
+    margin: 1rem auto;
+    display: block;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    object-fit: cover;
+    transition: transform 0.3s ease;
 }
+
+.dragon-profile-img:hover {
+    transform: scale(1.05);
+}
+
+
 
 /* Add a bit of spacing for the content inside */
 .box-details p {
@@ -51,7 +64,7 @@
 /* Responsive adjustments */
 /* Specific pagination style for the profile boxes */
 .box-details .pagination {
-    margin-top: 1rem;
+    margin-top: auto;
     gap: 8px;
     margin-bottom: 0;
 }
@@ -61,6 +74,8 @@
     padding: 5px 12px;
     font-size: 0.9em;
 }
+
+
 
 @media (max-width: 768px) {
     .container {

@@ -81,11 +81,11 @@
     {% endif %}
 </div>
 
-<div class="box-details">
+    <div class="box-details">
     <h2>🐉 Your Dragon</h2>
     {% if dragon %}
         <p><strong>{{ dragon.name }}</strong></p>
-        <img src="{% static 'dragons/'|add:dragon.photo %}" alt="{{ dragon.name }}" style="width: 100px;">
+        <img src="{% static 'dragons/'|add:dragon.photo %}" alt="{{ dragon.name }}" class="dragon-profile-img">
     {% else %}
         <p>You haven't matched with a dragon yet.</p>
     {% endif %}
