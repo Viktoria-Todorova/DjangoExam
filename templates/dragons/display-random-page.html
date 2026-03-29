@@ -5,9 +5,28 @@
 {% block content %}
 <main class = 'order'>
 
-
+{% if can_match == False %}
+    <div class="box-details not-worthy" style="grid-column: 1 / -1; max-width: 600px; margin: 2rem auto;">
+        <h1>🛡️ Prove Your Mastery</h1>
+        <p>A dragon only matches with a true Alchemist.</p>
+        <p>You have discovered <strong>{{ user_has }}</strong> out of <strong>{{ total_needed }}</strong> potion recipes.</p>
+        <div style="margin: 2rem 0;">
+            <p>Go back to the cauldron and brew more potions!</p>
+            <a href="{% url 'create_potion' %}"><button>⚗️ Brew Potions</button></a>
+        </div>
+    </div>
+{% elif not dragon %}
+    <div class="box-details">
+        <h1>🐉 All Dragons Have Riders</h1>
+        <p>Currently, there are no available dragons in the sanctuary. Please check back later!</p>
+    </div>
+{% else %}
+    {% if newly_matched %}
+        <h1 style="grid-column: 1/-1; text-align: center; color: #ffd700;">✨ A Bond has Formed! ✨</h1>
+    {% endif %}
+    <h1>You matched with</h1>
     <div class="box-details dragon" >
-        <h2>You matched with</h2>
+
         <h2>{{ dragon.name }}</h2>
         <img src="{% static 'dragons/'|add:dragon.photo %}" alt="{{ dragon.name }}">
     </div>
@@ -16,7 +35,7 @@
         <h1>A little bit about me</h1>
         <p>{{ dragon.description }}</p>
     </div>
+{% endif %}
 
 </main>
-
 {% endblock %}

@@ -85,8 +85,7 @@
     <h2>🐉 Your Dragon</h2>
     {% if dragon %}
         <p><strong>{{ dragon.name }}</strong></p>
-        <p>{{ dragon.description }}</p>
-        <img src="{{ dragon.photo }}" alt="{{ dragon.name }}" style="width: 100px;">
+        <img src="{% static 'dragons/'|add:dragon.photo %}" alt="{{ dragon.name }}" style="width: 100px;">
     {% else %}
         <p>You haven't matched with a dragon yet.</p>
     {% endif %}
