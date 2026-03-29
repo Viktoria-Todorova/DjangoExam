@@ -16,10 +16,10 @@
 
     <form method="POST" class="brew-form">
       {% csrf_token %}
-        {{ form.magician }}
-        {% if form.magician.errors %}
-            <p class="field-error">{{ form.magician.errors.0 }}</p>
-        {% endif %}
+{#        {{ form.magician }}#}
+{#        {% if form.magician.errors %}#}
+{#            <p class="field-error">{{ form.magician.errors.0 }}</p>#}
+{#        {% endif %}#}
       <div class="ingredient-row">
         <div class="ingredient-group">
           <label>🌱 Herb</label>
@@ -80,6 +80,11 @@
           <p>Potion discovered!</p>
           <p class="result-name">{{ potion_name }}</p>
             <a href="{% url 'secret_potions' %}"><button>See magic potion book</button></a>
+        {% elif result == "already_learned" %}
+          <span class="result-emoji">📜</span>
+          <p>You already have learned this potion!</p>
+          <p class="result-name">{{ potion_name }}</p>
+          <a href="{% url 'secret_potions' %}"><button>Check your potion book</button></a>
         {% else %}
           <span class="result-emoji">💨</span>
           <p>The brew went wrong...</p>

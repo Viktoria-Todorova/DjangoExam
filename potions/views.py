@@ -23,18 +23,20 @@ class CreatePotionView(LoginRequiredMixin,FormView):
         herb = form.cleaned_data["herb"]
         liquid = form.cleaned_data["liquid"]
         item = form.cleaned_data["item"]
-        magician = form.cleaned_data["magician"]
         ingredients = (herb, liquid, item)
 
         if ingredients in POTION_RECIPES:
             potion_name = POTION_RECIPES[ingredients]
-            result = "success"
-
-            Potion.objects.get_or_create(
-                name=potion_name,
-                magician=magician,
-                defaults={"description": f"Brewed with {herb}, {liquid}, and {item}."}
-            )
+            
+            if Potion.objects.filter(name=potion_name, magician=self.request.user).exists():
+                result = "already_learned"
+            else:
+                result = "success"
+                Potion.objects.create(
+                    name=potion_name,
+                    magician=self.request.user,
+                    description=f"Brewed with {herb}, {liquid}, and {item}."
+                )
         else:
             potion_name = random.choice(FAIL_POTIONS)
             result = "fail"

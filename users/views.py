@@ -11,6 +11,7 @@ from django.views.generic import CreateView, UpdateView, TemplateView
 
 from circulation.models import Borrowed
 from dragons.models import Dragon
+from potions.models import Potion
 from users.forms import UserForm, ProfileEditForm
 
 # Create your views here.
@@ -54,6 +55,8 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
 
+from django.core.paginator import Paginator
+
 class ProfileView(LoginRequiredMixin, TemplateView):
     template_name = 'users/profile-page.html'
 
@@ -62,8 +65,25 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         user = self.request.user
 
         borrowed = Borrowed.objects.filter(magician=user)
-        context['currently_rented'] = borrowed.filter(return_date__isnull=True)
-        context['returned_books'] = borrowed.filter(return_date__isnull=False)
+        
+        # Pagination for Currently Rented
+        currently_rented_list = borrowed.filter(return_date__isnull=True).order_by('-due_date')
+        rented_paginator = Paginator(currently_rented_list, 3) # 3 per page
+        rented_page = self.request.GET.get('rented_page')
+        context['currently_rented'] = rented_paginator.get_page(rented_page)
+
+        # Pagination for History
+        history_list = borrowed.filter(return_date__isnull=False).order_by('-return_date')
+        history_paginator = Paginator(history_list, 3)
+        history_page = self.request.GET.get('history_page')
+        context['returned_books'] = history_paginator.get_page(history_page)
+
+        # Pagination for Potions
+        potions_list = Potion.objects.filter(magician=user).order_by('-created_on')
+        potions_paginator = Paginator(potions_list, 2)
+        potions_page = self.request.GET.get('potions_page')
+        context['potions'] = potions_paginator.get_page(potions_page)
+
         context['dragon'] = Dragon.objects.filter(rider=user).first()
         context['now'] = timezone.now()
         return context

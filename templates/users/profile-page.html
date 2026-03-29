@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'users/profile.css' %}">
+{% endblock %}
 
 {% block content %}
 <div class="box-details">
-    <h1>⚗️ Your Profile</h1>
+    <h1>Your Profile</h1>
 
     {% if messages %}
         {% for message in messages %}
@@ -32,6 +37,20 @@
                 <button type="submit">📖 Return Book</button>
             </form>
         {% endfor %}
+        
+        <!-- Pagination -->
+        {% if currently_rented.paginator.num_pages > 1 %}
+        <div class="pagination">
+            {% if currently_rented.has_previous %}
+                <a href="?rented_page={{ currently_rented.previous_page_number }}&history_page={{ returned_books.number }}&potions_page={{ potions.number }}">‹</a>
+            {% endif %}
+            <span>{{ currently_rented.number }}/{{ currently_rented.paginator.num_pages }}</span>
+            {% if currently_rented.has_next %}
+                <a href="?rented_page={{ currently_rented.next_page_number }}&history_page={{ returned_books.number }}&potions_page={{ potions.number }}">›</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        
     {% else %}
         <p>No books currently rented.</p>
     {% endif %}
@@ -43,6 +62,20 @@
         {% for borrow in returned_books %}
             <p>{{ borrow.book.title }} — returned {{ borrow.return_date|date:"d M Y" }}</p>
         {% endfor %}
+        
+        <!-- Pagination -->
+        {% if returned_books.paginator.num_pages > 1 %}
+        <div class="pagination">
+            {% if returned_books.has_previous %}
+                <a href="?history_page={{ returned_books.previous_page_number }}&rented_page={{ currently_rented.number }}&potions_page={{ potions.number }}">‹</a>
+            {% endif %}
+            <span>{{ returned_books.number }}/{{ returned_books.paginator.num_pages }}</span>
+            {% if returned_books.has_next %}
+                <a href="?history_page={{ returned_books.next_page_number }}&rented_page={{ currently_rented.number }}&potions_page={{ potions.number }}">›</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        
     {% else %}
         <p>No books returned yet.</p>
     {% endif %}
@@ -56,6 +89,31 @@
         <img src="{{ dragon.photo }}" alt="{{ dragon.name }}" style="width: 100px;">
     {% else %}
         <p>You haven't matched with a dragon yet.</p>
+    {% endif %}
+</div>
+
+<div class="box-details">
+    <h2>Your Potions</h2>
+    {% if potions %}
+        {% for potion in potions %}
+            <p>{{ potion.name }} : {{ potion.description }} </p>
+        {% endfor %}
+        
+        <!-- Pagination -->
+        {% if potions.paginator.num_pages > 1 %}
+        <div class="pagination">
+            {% if potions.has_previous %}
+                <a href="?potions_page={{ potions.previous_page_number }}&rented_page={{ currently_rented.number }}&history_page={{ returned_books.number }}">‹</a>
+            {% endif %}
+            <span>{{ potions.number }}/{{ potions.paginator.num_pages }}</span>
+            {% if potions.has_next %}
+                <a href="?potions_page={{ potions.next_page_number }}&rented_page={{ currently_rented.number }}&history_page={{ returned_books.number }}">›</a>
+            {% endif %}
+        </div>
+        {% endif %}
+        
+    {% else %}
+        <p>You haven't learned any potions.</p>
     {% endif %}
 </div>
 {% endblock %}
