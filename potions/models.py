@@ -12,7 +12,7 @@ class Potion(models.Model):
     magician = models.ForeignKey(User, on_delete=models.CASCADE, related_name='potions')
 
 
-
+#i've should have called it potions recipes
 class SecretPotions(models.Model):
     potion=models.CharField(max_length=100)
     herb=models.CharField(max_length=100)
