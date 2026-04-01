@@ -175,6 +175,8 @@ CELERY_TASK_ROUTES = {}
 
 CELERY_BEAT_SCHEDULE = {}
 
+CELERY_TASK_ALWAYS_EAGER = os.getenv('CELERY_TASK_ALWAYS_EAGER', 'False') == 'True'
+
 #todo see if there is something else i can do for that
 if platform.system() == 'Windows':
     CELERY_WORKER_POOL = 'solo'
