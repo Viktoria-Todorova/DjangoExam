@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
+import platform
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -165,3 +166,15 @@ LOGIN_URL = '/user/login/'
 
 ALLOWED_HOSTS = [host for host in os.getenv('ALLOWED_HOSTS').split(',') if host]
 CSRF_TRUSTED_ORIGINS = [host for host in os.getenv('CSRF_TRUSTED_ORIGINS').split(',') if host]
+
+
+CELERY_BROKER_URL=os.getenv('CELERY_BROKER_URL')
+CELERY_RESULT_BACKEND=os.getenv('CELERY_RESULT_BACKEND')
+
+CELERY_TASK_ROUTES = {}
+
+CELERY_BEAT_SCHEDULE = {}
+
+#todo see if there is something else i can do for that
+if platform.system() == 'Windows':
+    CELERY_WORKER_POOL = 'solo'

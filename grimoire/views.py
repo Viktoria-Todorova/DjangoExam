@@ -5,6 +5,7 @@ from django.views.generic import CreateView, UpdateView, ListView, DetailView, D
 
 from grimoire.forms import GrimoireForm, DeleteGrimoireForm
 from grimoire.models import Grimoire
+from grimoire.tasks import process_grimoire_image
 
 
 
@@ -19,7 +20,13 @@ class GrimoireCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.magician = self.request.user
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        
+
+        if self.object.image:
+            process_grimoire_image.delay(self.object.id)
+        
+        return response
 
 class GrimoireListView(ListView):
     model = Grimoire
@@ -45,6 +52,15 @@ class GrimoireEditView(LoginRequiredMixin, UpdateView):
         if obj.magician != self.request.user and not self.request.user.is_staff:
             raise PermissionDenied("You are not the owner of this grimoire entry!")
         return obj
+    
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        
+
+        if self.object.image:
+            process_grimoire_image.delay(self.object.id)
+        
+        return response
 
 
 class GrimoireDeleteView(LoginRequiredMixin, DeleteView):

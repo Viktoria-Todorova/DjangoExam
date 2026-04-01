@@ -1,8 +1,9 @@
-
 from django.contrib import messages
 from django.contrib.auth import login, get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.views import LoginView
+from django.core.cache import cache
+from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
 from django.utils import timezone
@@ -13,6 +14,7 @@ from circulation.models import Borrowed
 from dragons.models import Dragon
 from potions.models import Potion
 from users.forms import UserForm, ProfileEditForm
+from users.tasks import aggregate_profile_stats
 
 # Create your views here.
 
@@ -55,8 +57,6 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
 
-from django.core.paginator import Paginator
-
 from potions.choices import POTION_RECIPES
 
 class ProfileView(LoginRequiredMixin, TemplateView):
@@ -66,7 +66,7 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         user = self.request.user
 
-        borrowed = Borrowed.objects.filter(magician=user)
+        borrowed = Borrowed.objects.filter(magician=user).select_related('book')
 
         # Pagination for Currently Rented
         currently_rented_list = borrowed.filter(return_date__isnull=True).order_by('-due_date')
@@ -87,14 +87,27 @@ class ProfileView(LoginRequiredMixin, TemplateView):
         potions_page = self.request.GET.get('potions_page')
         context['potions'] = potions_paginator.get_page(potions_page)
 
-        # Potion Discovery Stats
-        total_recipes = len(set(POTION_RECIPES.values()))
-        discovered_count = potions_qs.values('name').distinct().count()
-        context['potions_discovered'] = discovered_count
-        context['potions_total'] = total_recipes
-        context['potions_remaining'] = max(0, total_recipes - discovered_count)
+        # Try to get cached stats, otherwise trigger async calculation
+        stats = cache.get(f'profile_stats_{user.id}')
+        if stats:
+            # Use cached stats
+            context['potions_discovered'] = stats['potions_discovered']
+            context['potions_total'] = stats['potions_total']
+            context['potions_remaining'] = stats['potions_remaining']
+            context['dragon'] = Dragon.objects.get(id=stats['dragon_id']) if stats['dragon_id'] else None
+        else:
+            # Trigger async stats calculation
+            aggregate_profile_stats.delay(user.id)
+            
+            # Show defaults while calculating
+            from potions.choices import POTION_RECIPES
+            total_recipes = len(set(POTION_RECIPES.values()))
+            discovered_count = potions_qs.values('name').distinct().count()
+            context['potions_discovered'] = discovered_count
+            context['potions_total'] = total_recipes
+            context['potions_remaining'] = max(0, total_recipes - discovered_count)
+            context['dragon'] = Dragon.objects.filter(rider=user).first()
 
-        context['dragon'] = Dragon.objects.filter(rider=user).first()
         context['now'] = timezone.now()
         return context
 

@@ -7,6 +7,7 @@ from datetime import timedelta
 
 from catalog.models import Catalog
 from circulation.models import Borrowed
+from circulation.tasks import process_book_rental, process_book_return
 
 
 class RulesView(LoginRequiredMixin, DetailView):
@@ -26,23 +27,18 @@ class ValidateRentABookView(LoginRequiredMixin, DetailView):
 class RentABookView(LoginRequiredMixin, View):
     def post(self, request, book_id):
         book = get_object_or_404(Catalog, id=book_id)
-        Borrowed.objects.create(
-            magician=request.user,
-            book=book,
-            due_date=timezone.now() + timedelta(days=25)
-        )
-        book.quantity -= 1
-        book.save()
+        
+        # Queue rental processing asynchronously
+        process_book_rental.delay(request.user.id, book_id)
+        
         return redirect('home')
 
 
 class ReturnBookView(LoginRequiredMixin, View):
     def post(self, request, borrowed_id):
         borrowed = get_object_or_404(Borrowed, id=borrowed_id, magician=request.user)
-        borrowed.return_date = timezone.now()
-        borrowed.save()
-
-        borrowed.book.quantity += 1
-        borrowed.book.save()
-
+        
+        # Queue return processing asynchronously
+        process_book_return.delay(borrowed_id)
+        
         return redirect('users:profile')
