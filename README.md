@@ -60,4 +60,45 @@ DjangoExam/
 
 ## 🪄 Setup Instructions
 
+### Local Development with Docker
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Viktoria-Todorova/DjangoExam.git
+   cd DjangoExam
+   ```
+
+2. **Create environment file:**
+   ```bash
+   cp .env.template .env
+   ```
+   Edit `.env` and set your values (you can use defaults for local testing).
+
+3. **Build and run with Docker:**
+   ```bash
+   docker-compose up --build
+   ```
+   This will:
+   - Start PostgreSQL database
+   - Start Redis server
+   - Run Django migrations
+   - Start Django app on `http://localhost:8000`
+   - Start Celery worker for async tasks
+
+4. **Create a superuser (optional, run in another terminal):**
+   ```bash
+   docker-compose exec django python manage.py createsuperuser
+   ```
+
+5. **Access the app:**
+   - Main app: http://localhost:8000
+   - Admin panel: http://localhost:8000/admin
+
+6. **Stop the application:**
+   ```bash
+   docker-compose down
+   ```
+
+### Traditional Setup
+
 See [Project Setup Instructions](https://github.com/Viktoria-Todorova/DjangoExam/blob/main/docs/project_setup.md)
