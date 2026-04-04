@@ -1,0 +1,4 @@
+-- PostgreSQL initialization script
+-- Auto-created by docker-entrypoint when volume is fresh
+-- The POSTGRES_DB environment variable handles the creation,
+-- but this file ensures it's executable in the init process

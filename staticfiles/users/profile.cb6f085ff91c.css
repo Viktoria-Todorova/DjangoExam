@@ -1,0 +1,84 @@
+/* Container that holds all the boxes */
+.container {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+/* Individual Box Styles */
+.box-details {
+    margin: 0 !important;
+    width: 100% !important;
+    max-width: none !important;
+    height: 100%;
+    justify-content: flex-start !important;
+    text-align: center !important;
+    align-items: center !important;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Make the first box (Profile Info) span across if there's space */
+.box-details:first-of-type {
+    grid-column: 1 / -1;
+    max-width: 800px !important;
+    margin: 0 auto 1.5rem auto !important;
+}
+
+/* Header style within boxes */
+.box-details h1, .box-details h2 {
+    border-bottom: 2px solid #8b6914;
+    padding-bottom: 0.5rem;
+    width: 100%;
+    color: #ffd700;
+}
+/* Adjust dragon image */
+.dragon-profile-img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-radius: 12px;
+    border: 3px solid #d4af37;
+    margin: 1rem auto;
+    display: block;
+    box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.dragon-profile-img:hover {
+    transform: scale(1.05);
+}
+
+
+
+/* Add a bit of spacing for the content inside */
+.box-details p {
+    margin: 0.5rem 0;
+}
+
+/* Responsive adjustments */
+/* Specific pagination style for the profile boxes */
+.box-details .pagination {
+    margin-top: auto;
+    gap: 8px;
+    margin-bottom: 0;
+}
+
+.box-details .pagination a, 
+.box-details .pagination span {
+    padding: 5px 12px;
+    font-size: 0.9em;
+}
+
+
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
