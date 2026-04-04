@@ -12,6 +12,8 @@ def process_grimoire_image(grimoire_id):
     - Compress for web optimization
     """
     from grimoire.models import Grimoire
+    from django.core.files.base import ContentFile
+    import requests
     
     try:
         grimoire = Grimoire.objects.get(id=grimoire_id)
@@ -19,7 +21,14 @@ def process_grimoire_image(grimoire_id):
         if not grimoire.image:
             return {"status": "error", "message": "No image found"}
         
-        # Open the image
+        # Get image URL (works with both local and Cloudinary)
+        image_url = grimoire.image.url if hasattr(grimoire.image, 'url') else str(grimoire.image)
+        
+        # If it's a Cloudinary URL, skip processing (Cloudinary handles optimization)
+        if 'cloudinary' in image_url:
+            return {"status": "success", "message": "Image stored in Cloudinary (no local processing needed)"}
+        
+        # Local image processing
         img = Image.open(grimoire.image.path)
         
         # Convert RGBA to RGB if needed

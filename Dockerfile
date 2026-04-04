@@ -40,16 +40,3 @@ EXPOSE 8000
 
 # Default command (can be overridden in docker-compose)
 CMD ["gunicorn", "LibraryProject.wsgi:application", "--bind", "0.0.0.0:8000"]
-───────────────────────────────────────────────────────────────────────────────────────────────── │
-│ settings.py +1 -1                                                                                                                                                                │
-│ D:\SoftUni\DjangoExam\LibraryProject                                                                                                                                             │
-│                                                                                                                                                                                  │
-│ 26     # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/                                                                                                   │
-│ 27                                                                                                                                                                               │
-│ 28     # SECURITY WARNING: keep the secret key used in production secret!                                                                                                        │
-│ 29 -   SECRET_KEY = os.getenv('SECRET_KEY')                                                                                                                                      │
-│ 29 +   SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-dev-key-change-in-production'                                                                                       │
-│ 30                                                                                                                                                                               │
-│ 31     # SECURITY WARNING: don't run with debug turned on in production!                                                                                                         │
-│ 32     DEBUG = os.getenv('DEBUG', 'False') == 'True'                                                                                                                             │
-│
