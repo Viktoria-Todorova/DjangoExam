@@ -49,12 +49,14 @@ DjangoExam/
 
 ## 🪶 Technologies Used
 - Python 3  
-- Django  
-- SQLite (development)  
+- Django + Django REST Framework  
+- PostgreSQL (production) / SQLite (optional local fallback)  
+- Redis + Celery (async task processing)  
 - HTML5 / CSS3  
 - Django Templates  
 - Django Class-Based Views  
-- Git  
+- Docker & Docker Compose  
+- Git / GitHub  
 
 ---
 
@@ -102,3 +104,38 @@ DjangoExam/
 ### Traditional Setup
 
 See [Project Setup Instructions](https://github.com/Viktoria-Todorova/DjangoExam/blob/main/docs/project_setup.md)
+
+---
+
+## 🌍 Deployed Application
+
+The application is live at:  
+**https://magiclibrary-eahrbfhaapbafvh5.switzerlandnorth-01.azurewebsites.net/**
+
+---
+
+## 🔑 Environment Variables
+
+All configuration is handled via a `.env` file. Copy `.env.template` and fill in your values:
+
+```env
+SECRET_KEY=your-secret-key-here
+DEBUG=False
+
+# PostgreSQL
+DB_NAME=library_db
+DB_USER=library_user
+DB_PASSWORD=library_password
+DB_HOST=localhost
+DB_PORT=5432
+
+# Celery / Redis
+CELERY_BROKER_URL=redis://localhost:6379/0
+CELERY_RESULT_BACKEND=redis://localhost:6379/0
+
+# Allowed hosts & CSRF
+ALLOWED_HOSTS=localhost,127.0.0.1
+CSRF_TRUSTED_ORIGINS=http://localhost:8000,http://127.0.0.1:8000
+```
+
+> For local Docker-based setup, `DB_HOST` should be `postgres` and Redis URL should use `redis` as the hostname, as defined in `docker-compose.yml`.

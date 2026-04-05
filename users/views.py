@@ -8,7 +8,7 @@ from django.http import HttpResponseRedirect, JsonResponse
 from django.urls import reverse_lazy
 from django.utils import timezone
 from django.views import View
-from django.views.generic import CreateView, UpdateView, TemplateView
+from django.views.generic import CreateView, UpdateView, TemplateView, DeleteView
 
 from circulation.models import Borrowed
 from dragons.models import Dragon
@@ -135,3 +135,19 @@ class CheckUsernameView(View):
         username = request.GET.get('username', '')
         taken = UserModel.objects.filter(username=username).exists()
         return JsonResponse({'taken': taken})
+
+
+class ProfileDeleteView(LoginRequiredMixin, DeleteView):
+    model = UserModel
+    template_name = 'users/profile-delete.html'
+    success_url = reverse_lazy('home')
+
+    def get_object(self):
+        return self.request.user
+
+    def form_valid(self, form):
+        from django.contrib.auth import logout
+        user = self.get_object()
+        logout(self.request)
+        user.delete()
+        return HttpResponseRedirect(self.success_url)

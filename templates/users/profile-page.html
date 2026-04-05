@@ -21,6 +21,7 @@
     <p><strong>Email:</strong> {{ request.user.email }}</p>
 
     <a href="{% url 'users:edit-profile' %}"><button>✏️ Edit Profile</button></a>
+    <a href="{% url 'users:delete-profile' %}"><button style="background-color: #c0392b;">🗑️ Delete Account</button></a>
 </div>
 
 <div class="box-details">
