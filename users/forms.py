@@ -44,6 +44,12 @@ class UserForm(forms.ModelForm):
         for field in self.fields.values():
             field.help_text = ''
 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if email and User.objects.filter(email=email).exists():
+            raise forms.ValidationError('This email address is already in use.')
+        return email
+
     def clean_password(self):
         password = self.cleaned_data.get('password')
         validate_password(password)
@@ -78,6 +84,15 @@ class ProfileEditForm(forms.ModelForm):
     class Meta:
         model = UserModel
         fields = ['first_name', 'last_name', 'email']
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        qs = UserModel.objects.filter(email=email)
+        if self.instance and self.instance.pk:
+            qs = qs.exclude(pk=self.instance.pk)
+        if qs.exists():
+            raise forms.ValidationError('This email address is already in use.')
+        return email
 
     def clean(self):
         cleaned_data = super().clean()
