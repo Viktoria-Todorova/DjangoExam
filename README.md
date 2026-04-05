@@ -50,8 +50,9 @@ DjangoExam/
 ## 🪶 Technologies Used
 - Python 3  
 - Django + Django REST Framework  
-- PostgreSQL (production) / SQLite (optional local fallback)  
+- PostgreSQL  
 - Redis + Celery (async task processing)  
+- Cloudinary (media file storage)  
 - HTML5 / CSS3  
 - Django Templates  
 - Django Class-Based Views  
@@ -95,6 +96,7 @@ DjangoExam/
 5. **Access the app:**
    - Main app: http://localhost:8000
    - Admin panel: http://localhost:8000/admin
+   - pgAdmin (DB browser): http://localhost:5050 (email: `admin@admin.com`, password: `admin`)
 
 6. **Stop the application:**
    ```bash
