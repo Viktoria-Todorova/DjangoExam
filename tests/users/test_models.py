@@ -45,6 +45,6 @@ class PhoneNumberValidatorTest(TestCase):
             self.validator('081234567a')
         self.assertIn('only contain digits', str(ctx.exception))
 
-    def test_phone_number_blank_expect_success(self):
-        user = baker.make('users.User', phone_number=None)
-        self.assertIsNone(user.phone_number)
+    def test_phone_number_required_expect_failure(self):
+        with self.assertRaises(Exception):
+            baker.make('users.User', phone_number=None)

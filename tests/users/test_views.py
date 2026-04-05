@@ -14,7 +14,7 @@ class RegisterViewTest(TestCase):
             'first_name': 'New',
             'last_name': 'Magician',
             'email': 'new@gmail.com',
-            'phone_number': '',
+            'phone_number': '0899999999',
         }
 
     def test_get_renders_form_expect_success(self):
