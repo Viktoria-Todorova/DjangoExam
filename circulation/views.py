@@ -2,8 +2,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import View
 from django.views.generic import DetailView
 from django.shortcuts import get_object_or_404, redirect
-from django.utils import timezone
-from datetime import timedelta
 
 from catalog.models import Catalog
 from circulation.models import Borrowed

@@ -5,7 +5,7 @@ def create_groups(apps, schema_editor):
     Group = apps.get_model('auth', 'Group')
     Permission = apps.get_model('auth', 'Permission')
 
-    # --- Librarian group: full CRUD on all main models ---
+    # Librarian group: full CRUD on all main models
     librarian, _ = Group.objects.get_or_create(name='Librarian')
 
     librarian_codenames = [
@@ -26,7 +26,7 @@ def create_groups(apps, schema_editor):
     librarian_perms = Permission.objects.filter(codename__in=librarian_codenames)
     librarian.permissions.set(librarian_perms)
 
-    # --- Visitor group: read-only on all main models ---
+    # Visitor group: read-only on all main models
     visitor, _ = Group.objects.get_or_create(name='Visitor')
 
     visitor_codenames = [

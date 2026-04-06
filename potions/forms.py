@@ -1,7 +1,7 @@
 from django import forms
 
 from potions.choices import HERB_CHOICES, LIQUID_CHOICES, ITEM_CHOICES
-from users.models import User
+
 
 
 class CreatePotionForm(forms.Form):

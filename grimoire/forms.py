@@ -14,11 +14,6 @@ class GrimoireForm(forms.ModelForm):
 
 
 
-
-
-
-
-#todo when we are able to do logins only the current user to be able to delete it
 class DeleteGrimoireForm(forms.ModelForm):
     class Meta:
         model = Grimoire

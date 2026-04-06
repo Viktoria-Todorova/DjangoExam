@@ -2,15 +2,12 @@ from celery import shared_task
 from django.core.cache import cache
 
 
+
+
+# Calculate and cache user profile statistics asynchronously.
 @shared_task
 def aggregate_profile_stats(user_id):
-    """
-    Calculate and cache user profile statistics asynchronously.
-    - Count currently rented books
-    - Count returned books
-    - Count discovered potions
-    - Get user's dragon
-    """
+
     from users.models import User
     from circulation.models import Borrowed
     from potions.models import Potion
@@ -22,16 +19,16 @@ def aggregate_profile_stats(user_id):
         
         borrowed = Borrowed.objects.filter(magician=user)
         
-        # Count rentals
+        #count rentals
         currently_rented_count = borrowed.filter(return_date__isnull=True).count()
         returned_books_count = borrowed.filter(return_date__isnull=False).count()
         
-        # Count potions
+        #count potions
         potions_qs = Potion.objects.filter(magician=user)
         discovered_count = potions_qs.values('name').distinct().count()
         total_recipes = len(set(POTION_RECIPES.values()))
         
-        # Get dragon
+        #get dragon
         dragon = Dragon.objects.filter(rider=user).first()
         
         stats = {
@@ -44,7 +41,7 @@ def aggregate_profile_stats(user_id):
             'dragon_name': dragon.name if dragon else None,
         }
         
-        # Cache for 1 hour
+        #cache for 1 hour
         cache.set(f'profile_stats_{user_id}', stats, 3600)
         
         return {"status": "success", "message": "Profile stats cached", "user_id": user_id}

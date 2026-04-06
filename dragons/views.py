@@ -7,7 +7,6 @@ from django.views.generic import ListView
 from potions.models import Potion
 from dragons.models import Dragon
 
-from potions.choices import POTION_RECIPES
 
 # Create your views here.
 
