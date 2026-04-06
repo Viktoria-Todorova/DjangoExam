@@ -24,7 +24,10 @@ The chosen username is used to:
 - 📝 Submit and edit grimoires  
 
 
-https://github.com/user-attachments/assets/5cc4464a-bb65-49ff-a240-3d787c7233c1
+
+
+https://github.com/user-attachments/assets/b5127886-ba14-47c5-a150-bedb7d024a58
+
 
 
 
