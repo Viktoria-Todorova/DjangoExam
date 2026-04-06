@@ -29,6 +29,17 @@ The chosen username is used to:
 https://github.com/user-attachments/assets/b5127886-ba14-47c5-a150-bedb7d024a58
 
 
+When the Registration is ready the wizzard can actually check it's profile status:
+- Rented Books
+- Returned Books
+- Matched Dragon
+- Studied posions
+
+  Also the wizzard can edit it's profile and delete it 
+
+https://github.com/user-attachments/assets/e7667c71-34e3-4436-aa05-78848f954ac8
+
+
 
 
 
@@ -49,7 +60,10 @@ https://github.com/user-attachments/assets/0be1e95b-99ab-4887-88e2-0dc2d5f0f78d
 
 
 
-https://github.com/user-attachments/assets/566c1c07-5e83-4a21-97af-88eaf2f176ff
+
+https://github.com/user-attachments/assets/27e3db52-bae0-44b2-98af-b3bfd471546f
+
+
 
 
 
@@ -83,7 +97,7 @@ https://github.com/user-attachments/assets/7685e1e5-124b-4fb7-a882-522a5832ebb0
 
 ### 🐉 4. Dragons
 Wizards can:
-- 🤝 Match with one dragon from the available dragons  
+- 🤝 Match with one dragon from the available dragons when you learn the required potions (for the test i let the count to be 2 - so i don't make you wonder-but actually to see your dragon.
 
 
 https://github.com/user-attachments/assets/0cf3f563-8239-4727-9fd2-5c803ff13a00
@@ -97,18 +111,12 @@ Wizards can read published grimoires.
 
 They can also:
 - ✍️ Publish a new grimoire  
-- 🛡️ Edit a grimoire only if it belongs to them  
+- 🛡️ Edit/Delete a grimoire only if it belongs to them  
 
 
 https://github.com/user-attachments/assets/e21db139-cbbb-4caf-be63-ddd14c42dab9
 
 
-
-
----
-<h2 align="center">✨ Future Magical Improvements ✨</h2>
-
-- 🔐 Add a real authentication and login system
 
 
 ---
