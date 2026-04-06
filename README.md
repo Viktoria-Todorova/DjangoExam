@@ -38,12 +38,14 @@ DjangoExam/
 
 ## 🔮 Main Features
 - View and search magical books  
-- View / Create grimoires
-- Meet the dragons and get matched with one 
-- Create and store magical potions  
+- Full CRUD for books (admin), grimoires (owner), and user profiles  
+- Meet the dragons and get matched with one  
+- Create and discover magical potions  
 - Borrow and return books  
-- User authentication and roles (staff vs visitors)  
-- Admin-only edit/deletion of books
+- User registration, login, logout, and profile management  
+- Two user groups: Librarian and Visitor with distinct permissions  
+- RESTful API for book search  
+- Async task processing with Celery (image optimization, profile stats caching)  
 
 ---
 
@@ -102,10 +104,6 @@ DjangoExam/
    ```bash
    docker-compose down
    ```
-
-### Traditional Setup
-
-See [Project Setup Instructions](https://github.com/Viktoria-Todorova/DjangoExam/blob/main/docs/project_setup.md)
 
 ---
 
