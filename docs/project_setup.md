@@ -28,6 +28,8 @@ cp .env.template .env
 
 Edit `.env` and fill in your values:
 
+***For SoftUni examiners I left the Cloudinary credentials.***
+
 | Variable | Description |
 |----------|-------------|
 | `SECRET_KEY` | Django secret key |
