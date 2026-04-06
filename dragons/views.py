@@ -1,6 +1,7 @@
 import random
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.cache import cache
 from django.shortcuts import render
 from django.views import View
 from django.views.generic import ListView
@@ -51,6 +52,7 @@ class RandomDragonView(LoginRequiredMixin, View):
             dragon = random.choice(available_dragons)
             dragon.rider = user
             dragon.save()
+            cache.delete(f'profile_stats_{user.id}')
             return render(request, 'dragons/display-random-page.html', {'dragon': dragon, 'newly_matched': True, 'can_match': True})
         else:
             return render(request, 'dragons/display-random-page.html', {'dragon': None, 'can_match': True})
