@@ -28,4 +28,5 @@ class Grimoire(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     type_of_story =models.CharField(max_length=20,choices=StoryTypeChoices.choices,default=StoryTypeChoices.OTHER)
     image =models.ImageField(upload_to="grimoire_images/",blank=True,null=True,
+                             max_length=500,
                              validators=[FileSizeValidator(5)])

@@ -15,4 +15,4 @@ class Borrowed(models.Model):
     def __str__(self):
         return f"{self.magician} borrowed {self.book} on {self.borrow_date.date()}"
 
-    #todo check if book is overdue
+

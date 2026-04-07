@@ -165,6 +165,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 MEDIA_URL = '/media/'
+
+# Allow uploads up to 6MB so the form's 5MB validator can run and show a friendly error
+DATA_UPLOAD_MAX_MEMORY_SIZE = 6 * 1024 * 1024
 # MEDIA_ROOT = BASE_DIR / 'media'
 
 STORAGES = {
@@ -195,9 +198,6 @@ CELERY_BEAT_SCHEDULE = {}
 
 CELERY_TASK_ALWAYS_EAGER = os.getenv('CELERY_TASK_ALWAYS_EAGER', 'False') == 'True'
 
-#todo see if there is something else i can do for that
-if platform.system() == 'Windows':
-    CELERY_WORKER_POOL = 'solo'
 
 
 CLOUDINARY_STORAGE = {
